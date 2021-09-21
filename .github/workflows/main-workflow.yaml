@@ -2,7 +2,7 @@ name: Main workflow
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '.gitignore'
       - '.metadata'
@@ -12,7 +12,6 @@ on:
   pull_request:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
 jobs:
   tagValidation:
     name: Tag validation
@@ -189,7 +188,7 @@ jobs:
 
       # Build the application.
       - name: Build the application
-        run: flutter build -v ${{ matrix.build_target }} ${{ matrix.build_args }} --release --dart-define=GH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
+        run: flutter build -v ${{ matrix.build_target }} ${{ matrix.build_args }} --release
 
       - name: Rename Android build
         if: matrix.target == 'Android'
