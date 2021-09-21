@@ -1,0 +1,236 @@
+name: Main workflow
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '.gitignore'
+      - '.metadata'
+      - '.github/**'
+      - 'README.md'
+      - 'README.fr.md'
+  pull_request:
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+jobs:
+  tagValidation:
+    name: Tag validation
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.split.outputs._0 }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get the version from the pubspec
+        id: pubspecVersion
+        uses: CumulusDS/get-yaml-paths-action@v0.1.0
+        with:
+          file: pubspec.yaml
+          version: version
+      - uses: jungwinter/split@v1
+        id: split
+        with:
+          msg: ${{ steps.pubspecVersion.outputs.version }}
+          seperator: '+'
+      - name: Validate that version doesn't exists
+        uses: mukunku/tag-exists-action@v1.0.0
+        id: checkTag
+        with:
+          tag: ${{ steps.split.outputs._0 }}
+      - if: ${{ steps.checkTag.outputs.exists == 'true' && github.event_name == 'pull_request' }}
+        name: Post comment on PR
+        uses: thollander/actions-comment-pull-request@1.0.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: '${{ steps.split.outputs._0 }} already exists, please update the pubspec version.'
+      - if: ${{ steps.checkTag.outputs.exists == 'true' }}
+        name: Fails because the tag already exists.
+        run: exit 1
+
+  testing:
+    name: Tests and checks
+    runs-on: ubuntu-latest
+    outputs:
+      coverage: ${{ steps.coverage.outputs.percentage }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.token }}
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - uses: subosito/flutter-action@v1.5.0
+      - run: flutter doctor
+
+      # Get flutter dependencies.
+      - run: flutter pub get
+
+      # Check the format of the code and check if the code has any errors/warnings
+      - run: flutter format --set-exit-if-changed .
+      - run: flutter analyze
+
+      # Retrieve the last commit message and check if the commit message contains [CI UPDATE GOLDENS].
+      # Set update_goldens output if the hot word is there.
+      - name: "Check if needed to update goldens"
+        if: github.event_name == 'pull_request'
+        id: check_run_goldens
+        run: |
+          commit_msg=$(git log --format=%B -n 1 HEAD)
+          if [[ $commit_msg == *"[CI UPDATE GOLDENS]"* ]]; then
+            echo ::set-output name=update_goldens::true
+          fi
+      # Run the tests with --update-goldens.
+      - name: Update goldens
+        if: ${{ steps.check_run_goldens.outputs.update_goldens == 'true' }}
+        run: flutter test --coverage --update-goldens
+
+      # Commit and push the goldens files updated.
+      - name: Commit golden files
+        id: commit
+        if: ${{ steps.check_run_goldens.outputs.update_goldens == 'true' }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: test/*
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: "Update golden files"
+
+        # Run the tests
+      - run: flutter test --coverage
+        if: ${{ steps.check_run_goldens.outputs.update_goldens != 'true' }}
+
+      - name: Upload coverage file
+        uses: actions/upload-artifact@v2
+        with:
+          name: lcov.info
+          path: ${{ github.workspace }}/coverage/lcov.info
+      - name: Get code coverage
+        id: coverage
+        run: |
+          chmod +x ./scripts/determine_code_coverage.sh
+          export COV="$(./scripts/determine_code_coverage.sh coverage/lcov.info)"
+          echo "Coverage detected is: $COV"
+          echo "::set-output name=percentage::$COV"
+  coverage:
+    name: Update coverage
+    needs: [ testing ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download coverage file
+        uses: actions/download-artifact@v2
+        with:
+          name: lcov.info
+      # Comment coverage report
+      - name: Comment the coverage of the PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: romeovs/lcov-reporter-action@v0.2.21
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-file: ./lcov.info
+
+      - name: Update badge coverage
+        if: ${{ github.event_name == 'push' }}
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_COVERAGE_BADGE_TOKEN }}
+          gistID: ${{ secrets.GIST_ID_COVERAGE_BADGE }}
+          filename: herbarium_app_master_badge_coverage.json
+          label: Code coverage
+          message: ${{ needs.testing.outputs.coverage }}
+          namedLogo: flutter
+          color: green
+
+  create-build:
+    name: Create ${{ matrix.target }} build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        target: [ iOS, Android ]
+        include:
+          - os: macos-latest
+            target: iOS
+            build_target: ios
+            build_args: --no-codesign
+            build_path: build/ios/iphoneos
+            asset_extension: zip
+            asset_content_type: application/zip
+          - os: ubuntu-latest
+            target: Android
+            build_target: apk
+            build_args: ''
+            build_path: build/app/outputs/apk/release
+            asset_extension: apk
+            asset_content_type: application/zip
+      # Disable fail-fast as we want results from all even if one fails.
+      fail-fast: false
+    needs: [ testing, tagValidation ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.0
+      - name: Install Android dependencies
+        if: matrix.target == 'Android'
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - run: flutter doctor -v
+      - name: Install iOS dependencies
+        if: matrix.target == 'iOS'
+        run: |
+          flutter pub get
+          cd ios
+          rm Podfile.lock
+          pod install --repo-update
+          flutter clean
+      # Get dependencies and decrypt needed files.
+      - run: flutter pub get
+
+      # Build the application.
+      - name: Build the application
+        run: flutter build -v ${{ matrix.build_target }} ${{ matrix.build_args }} --release --dart-define=GH_API_TOKEN=${{ secrets.GH_API_TOKEN }}
+
+      - name: Rename Android build
+        if: matrix.target == 'Android'
+        run: mv app-release.${{ matrix.asset_extension }} ${{ github.workspace }}/herbarium_app_${{ matrix.target }}.${{ matrix.asset_extension }}
+        working-directory: ${{ matrix.build_path }}
+
+      - name: Compress iOS build
+        if: matrix.target == 'iOS'
+        run: |
+          mv Runner.app Herbarium.app
+          ditto -c -k --sequesterRsrc --keepParent Herbarium.app ${{ github.workspace }}/herbarium_app_${{ matrix.target }}.${{ matrix.asset_extension }}
+        working-directory: ${{ matrix.build_path }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.target }}
+          path: ${{ github.workspace }}/herbarium_app_${{ matrix.target }}.${{ matrix.asset_extension }}
+
+  create-draft-release:
+    name: Draft Github release
+    if: ${{ github.event_name == 'push' }}
+    needs: [ tagValidation, create-build ]
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Download iOS build
+        uses: actions/download-artifact@v2
+        with:
+          name: iOS
+      - name: Download Android build
+        uses: actions/download-artifact@v2
+        with:
+          name: Android
+      - name: Create draft release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ needs.tagValidation.outputs.version }}
+          title: v${{ needs.tagValidation.outputs.version }}
+          files: |
+            herbarium_app_Android.apk
+            herbarium_app_iOS.zip
