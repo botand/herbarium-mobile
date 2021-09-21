@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.token }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
@@ -128,12 +128,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           lcov-file: ./lcov.info
-
       - name: Update badge coverage
         if: ${{ github.event_name == 'push' }}
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
-          auth: ${{ secrets.GIST_COVERAGE_BADGE_TOKEN }}
+          auth: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID_COVERAGE_BADGE }}
           filename: herbarium_app_master_badge_coverage.json
           label: Code coverage
