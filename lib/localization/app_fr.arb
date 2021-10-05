@@ -1,0 +1,7 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Herbarium",
+  "@appTitle": {
+    "description": "Nom de l'application"
+  }
+}
