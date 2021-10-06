@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.herbarium_mobile">
+    package="dev.xavierc.herbarium_mobile">
    <application
         android:label="herbarium_mobile"
         android:icon="@mipmap/ic_launcher">
