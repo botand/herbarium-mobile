@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.xavierc.herbarium_mobile">
    <application
-        android:label="herbarium_mobile"
+        android:label="Herbarium"
         android:icon="@mipmap/ic_launcher">
-        <activity
+<activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
