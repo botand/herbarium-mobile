@@ -1,4 +1,3 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:herbarium_mobile/src/core/constants/navigation_route.dart';
 
@@ -6,7 +5,6 @@ class NavigationRouter {
   static final NavigationRouter instance = NavigationRouter();
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
-    FirebaseCrashlytics.instance.crash();
     return MaterialPageRoute(builder: (_) {
       switch (routeSettings.name) {
         case NavigationRoute.login:

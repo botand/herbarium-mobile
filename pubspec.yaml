@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.9.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -73,3 +74,11 @@ flutter:
 
 flutter_intl:
   enabled: true
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/ic_launcher.png"
+  adaptive_icon_background: "#40356f"
+  adaptive_icon_foreground: "assets/ic_launcher_foreground.png"
