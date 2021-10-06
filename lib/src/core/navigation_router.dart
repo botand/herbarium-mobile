@@ -5,14 +5,12 @@ class NavigationRouter {
   static final NavigationRouter instance = NavigationRouter();
 
   Route<dynamic> generateRoute(RouteSettings routeSettings) {
-    return MaterialPageRoute(
-      builder: (_) {
-        switch (routeSettings.name) {
-          case NavigationRoute.login:
-          default:
-            return const Scaffold(body: Center(child: Text('Oups')));
-        }
+    return MaterialPageRoute(builder: (_) {
+      switch (routeSettings.name) {
+        case NavigationRoute.login:
+        default:
+          return const Scaffold(body: Center(child: Text('Oups')));
       }
-    );
+    });
   }
 }

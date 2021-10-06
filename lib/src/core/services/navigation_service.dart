@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 /// Navigation service who doesn't use the BuildContext which allow us to call it from anywhere.
 class NavigationService {
-  static final NavigationService _instance = NavigationService();
-  static NavigationService get instance => _instance;
-
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
