@@ -64,8 +64,8 @@ jobs:
       - run: flutter doctor
       - name: Decrypt secret files and certificates
         run: |
-          chmod +x ./scripts/decrypt.sh
-          ./scripts/decrypt.sh
+          chmod +x ./scripts/decrypt_secrets.sh
+          ./scripts/decrypt_secrets.sh
         env:
           ENCRYPTED_GOOGLE_SERVICE_PASSWORD: ${{ secrets.ENCRYPTED_GOOGLE_SERVICE_PASSWORD }}
 
@@ -182,8 +182,8 @@ jobs:
       - run: flutter doctor -v
       - name: Decrypt secret files and certificates
         run: |
-          chmod +x ./scripts/decrypt.sh
-          ./scripts/decrypt.sh
+          chmod +x ./scripts/decrypt_secrets.sh
+          ./scripts/decrypt_secrets.sh
         env:
           ENCRYPTED_GOOGLE_SERVICE_PASSWORD: ${{ secrets.ENCRYPTED_GOOGLE_SERVICE_PASSWORD }}
       - name: Install iOS dependencies
