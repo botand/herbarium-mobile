@@ -28,7 +28,7 @@ class _StartupViewState extends State<StartupView> {
   void initState() {
     super.initState();
 
-    if(Platform.isAndroid) {
+    if (Platform.isAndroid) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
 
@@ -43,40 +43,40 @@ class _StartupViewState extends State<StartupView> {
       viewModelBuilder: () => StartupViewModel(),
       builder: (context, StartupViewModel viewmodel, child) => Scaffold(
           body: Stack(
-            fit: StackFit.expand,
-            children: [
-              RiveAnimation.asset(
-                  'assets/animations/herbarium_splash_screen_animation.riv',
-                  controllers: [viewmodel.riveAnimationController],
-                  alignment: Alignment.bottomCenter),
-              Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.15),
-                      child: AnimatedOpacity(
-                        duration: _textAnimationDuration,
-                        opacity: _textOpacity,
-                        onEnd: () {
-                          viewmodel.textAnimationIsFinished = true;
-                          viewmodel.navigateToHomeScreen();
-                        },
-                        child: Text(AppLocalizations.of(context)!.appTitle,
-                            style: Theme.of(context).textTheme.headline1!.copyWith(
-                                fontFamily: 'RougeScript', color: Colors.white)),
-                      ))),
-              AnimatedOpacity(
-                  duration: _shadowAnimationDuration,
-                  opacity: _shadowOpacity,
-                  onEnd: () {
-                    viewmodel.shadowAnimationIsFinished = true;
-                    viewmodel.navigateToHomeScreen();
-                  },
-                  child: Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      color: Colors.black))
-            ],
+        fit: StackFit.expand,
+        children: [
+          RiveAnimation.asset(
+              'assets/animations/herbarium_splash_screen_animation.riv',
+              controllers: [viewmodel.riveAnimationController],
+              alignment: Alignment.bottomCenter),
+          Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.15),
+                  child: AnimatedOpacity(
+                    duration: _textAnimationDuration,
+                    opacity: _textOpacity,
+                    onEnd: () {
+                      viewmodel.textAnimationIsFinished = true;
+                      viewmodel.navigateToHomeScreen();
+                    },
+                    child: Text(AppLocalizations.of(context)!.appTitle,
+                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontFamily: 'RougeScript', color: Colors.white)),
+                  ))),
+          AnimatedOpacity(
+              duration: _shadowAnimationDuration,
+              opacity: _shadowOpacity,
+              onEnd: () {
+                viewmodel.shadowAnimationIsFinished = true;
+                viewmodel.navigateToHomeScreen();
+              },
+              child: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.black))
+        ],
       )),
     );
   }

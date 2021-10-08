@@ -15,7 +15,7 @@ class AnalyticsService {
   Future logError(String prefix, String message,
       [Exception? error, StackTrace? stackTrace]) async {
     final mesTruncated =
-    message.length > 100 ? message.substring(0, 99) : message;
+        message.length > 100 ? message.substring(0, 99) : message;
     await _analytics.logEvent(
         name: "${prefix}Error", parameters: {'message': mesTruncated});
 
@@ -27,7 +27,7 @@ class AnalyticsService {
   /// Log a event. [prefix] should be the service where the event was triggered.
   Future logEvent(String prefix, String message) async {
     final mesTruncated =
-    message.length > 100 ? message.substring(0, 99) : message;
+        message.length > 100 ? message.substring(0, 99) : message;
     await _analytics
         .logEvent(name: prefix, parameters: {'message': mesTruncated});
   }

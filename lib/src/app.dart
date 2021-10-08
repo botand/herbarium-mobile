@@ -33,7 +33,6 @@ class App extends StatelessWidget {
         navigatorObservers: [
           locator<AnalyticsService>().getAnalyticsObserver(),
         ],
-        home: const StartupView()
-    );
+        home: const StartupView());
   }
 }
