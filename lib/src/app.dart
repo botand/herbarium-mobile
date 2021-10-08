@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:herbarium_mobile/src/core/services/analytics_service.dart';
-import 'package:herbarium_mobile/src/ui/startup_view.dart';
+import 'package:herbarium_mobile/src/ui/startup/startup_view.dart';
 
 import 'core/locator.dart';
 import 'core/navigation_router.dart';
