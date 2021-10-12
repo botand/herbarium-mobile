@@ -1,5 +1,7 @@
 #!/bin/sh
 
-exec echo $file>&2
+echo $file
+echo $?
+
 
 exit 1
