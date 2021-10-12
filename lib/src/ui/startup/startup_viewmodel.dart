@@ -16,6 +16,11 @@ class StartupViewModel extends BaseViewModel {
   bool _shadowAnimationIsFinished = false;
   set shadowAnimationIsFinished(value) => _shadowAnimationIsFinished = value;
 
+
+
+
+
+
   StartupViewModel() {
     riveAnimationController.isActiveChanged.addListener(() {
       _animationIsActive = riveAnimationController.isActive;
