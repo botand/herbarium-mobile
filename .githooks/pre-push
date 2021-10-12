@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 flutter analyze
 if [ $? -ne 0 ]; then
