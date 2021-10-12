@@ -1,0 +1,4 @@
+#!/bin/sh
+
+flutter format .
+git add -u

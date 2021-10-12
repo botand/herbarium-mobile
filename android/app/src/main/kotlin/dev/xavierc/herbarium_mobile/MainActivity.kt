@@ -1,4 +1,4 @@
-package com.example.herbarium_mobile
+package dev.xavierc.herbarium_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
