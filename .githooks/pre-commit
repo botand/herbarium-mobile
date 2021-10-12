@@ -1,5 +1,4 @@
 #!/bin/sh
 
-exec 1>&2
 flutter format .
-exec echo $file
+git add -u
