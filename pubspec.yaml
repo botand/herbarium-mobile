@@ -29,6 +29,9 @@ dependencies:
   firebase_analytics: ^8.3.3
   firebase_crashlytics: ^2.2.2
   rive: ^0.7.28
+  flutter_reactive_ble: ^5.0.0
+  permission_handler: ^8.2.2
+  device_info_plus: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
