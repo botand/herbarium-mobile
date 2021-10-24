@@ -12,7 +12,7 @@ class NavigationRouter {
           switch (routeSettings.name) {
             case NavigationRoute.home:
               return const HomeView();
-              // return const HomeView();
+            case NavigationRoute.setup:
               return const SetupGreenHouseView();
             default:
               return const Scaffold(body: Center(child: Text('Oups')));
