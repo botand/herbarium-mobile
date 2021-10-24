@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:herbarium_mobile/src/core/utils/app_theme.dart';
 import 'package:herbarium_mobile/src/ui/base/base_scaffold.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herbarium_mobile/src/ui/setup_greenhouse/setup_greenhouse_viewmodel.dart';

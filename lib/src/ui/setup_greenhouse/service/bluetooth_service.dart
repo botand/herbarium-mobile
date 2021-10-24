@@ -18,25 +18,6 @@ class BluetoothService with ReactiveServiceMixin {
 
   final _analyticsService = locator<AnalyticsService>();
 
-  final Uuid _characteristicUuid = Uuid([
-    0x00,
-    0x00,
-    0xec,
-    0x0f,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x80,
-    0x00,
-    0x00,
-    0x80,
-    0x5f,
-    0x9b,
-    0x34,
-    0xfb
-  ]);
-
   final _deviceConnectionController = StreamController<ConnectionStateUpdate>();
 
   StreamSubscription<ConnectionStateUpdate>? _connection;
@@ -136,28 +117,31 @@ class BluetoothService with ReactiveServiceMixin {
     });
   }
 
-  Future<void> sendData(DiscoveredDevice device, List<int> values) async {
+  Future<void> sendData(DiscoveredDevice device, Uuid serviceUuid,
+      Uuid characteristicUuid, List<int> values) async {
     var characteristic = QualifiedCharacteristic(
-        serviceId: device.serviceUuids.first,
-        characteristicId: _characteristicUuid,
+        serviceId: serviceUuid,
+        characteristicId: characteristicUuid,
         deviceId: device.id);
     await _flutterReactiveBle.writeCharacteristicWithResponse(characteristic,
         value: values);
   }
 
-  Future<List<int>> readData(DiscoveredDevice device) async {
+  Future<List<int>> readData(DiscoveredDevice device, Uuid serviceUuid,
+      Uuid characteristicUuid) async {
     var characteristic = QualifiedCharacteristic(
-        serviceId: device.serviceUuids.first,
-        characteristicId: _characteristicUuid,
+        serviceId: serviceUuid,
+        characteristicId: characteristicUuid,
         deviceId: device.id);
 
     return await _flutterReactiveBle.readCharacteristic(characteristic);
   }
 
-  Stream<List<int>> subscribeToCharacteristic(DiscoveredDevice device) {
+  Stream<List<int>> subscribeToCharacteristic(
+      DiscoveredDevice device, Uuid serviceUuid, Uuid characteristicUuid) {
     var characteristic = QualifiedCharacteristic(
-        serviceId: device.serviceUuids.first,
-        characteristicId: _characteristicUuid,
+        serviceId: serviceUuid,
+        characteristicId: characteristicUuid,
         deviceId: device.id);
 
     return _flutterReactiveBle.subscribeToCharacteristic(characteristic);
@@ -165,5 +149,6 @@ class BluetoothService with ReactiveServiceMixin {
 
   Future<void> dispose() async {
     await _subscription?.cancel();
+    await _connection?.cancel();
   }
 }

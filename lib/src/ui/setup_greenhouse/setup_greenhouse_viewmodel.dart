@@ -1,10 +1,11 @@
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:herbarium_mobile/src/ui/setup_greenhouse/ble_uuids.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/ui/setup_greenhouse/service/bluetooth_service.dart';
 import 'package:stacked/stacked.dart';
 
 class SetupGreenHouseViewModel extends ReactiveViewModel {
-  final _devicesName = 'echo';
+  final _devicesName = 'Herbarium-greenhouse';
 
   final _bluetoothService = locator<BluetoothService>();
 
@@ -23,8 +24,10 @@ class SetupGreenHouseViewModel extends ReactiveViewModel {
       if (devices.length == 1) {
         _bluetoothService.stopScan();
         _bluetoothService.connectTo(devices.first);
-        _bluetoothService.sendData(devices.first, [1]);
-        print(await _bluetoothService.readData(devices.first));
+        print(await _bluetoothService.readData(
+            devices.first,
+            BleServicesUuids.deviceIdentity,
+            BleCharacteristicsUuids.deviceIdentity));
       }
     });
   }
