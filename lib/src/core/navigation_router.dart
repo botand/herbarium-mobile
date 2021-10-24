@@ -11,6 +11,7 @@ class NavigationRouter {
         builder: (_) {
           switch (routeSettings.name) {
             case NavigationRoute.home:
+              return const HomeView();
               // return const HomeView();
               return const SetupGreenHouseView();
             default:
