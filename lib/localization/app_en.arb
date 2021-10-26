@@ -2,6 +2,18 @@
   "@@locale": "en",
   "appTitle": "Herbarium",
   "@appTitle": {
-    "description": "The title of the application"
-  }
+    "description": "Application name"
+  },
+  "next": "next",
+  "setup_device_searching": "Searching a new device",
+  "setup_device_searching_tip": "Check the status indicator on your greenhouse follow a blinking orange pattern.",
+  "setup_device_found": "Found!",
+  "setup_device_found_subtitle": "Connection...",
+  "setup_device_set_wifi": "On which wifi do you wish to connect your device?",
+  "setup_device_set_wifi_password": "Enter the password of the wifi",
+  "setup_device_set_wifi_password_placeholder": "Password",
+  "setup_device_wifi_connecting": "Connecting your greenhouse to the wifi...",
+  "setup_device_set_name_title": "Give it a name",
+  "setup_device_set_name_placeholder": "Enter the name of your greenhouse",
+  "setup_device_finish": "Finished!"
 }

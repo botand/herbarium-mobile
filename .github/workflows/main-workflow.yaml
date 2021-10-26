@@ -60,7 +60,9 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-      - uses: subosito/flutter-action@v1.5.0
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
       - run: flutter doctor
       - name: Decrypt secret files and certificates
         run: |
