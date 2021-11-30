@@ -10,6 +10,8 @@ import 'package:stacked/stacked.dart';
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
+  static const bool disableAppleSignIn = true;
+
   @override
   Widget build(BuildContext context) => ViewModelBuilder.reactive(
         viewModelBuilder: () => LoginViewModel(AppLocalizations.of(context)!),
@@ -46,7 +48,7 @@ class LoginView extends StatelessWidget {
                         textColor: Colors.black38,
                       ),
                       const SizedBox(height: 30),
-                      if (Platform.isIOS)
+                      if (Platform.isIOS && disableAppleSignIn)
                         SignInWithButton(
                           provider: AppLocalizations.of(context)!.login_apple,
                           leading: Image.asset("assets/images/apple_logo.png",
