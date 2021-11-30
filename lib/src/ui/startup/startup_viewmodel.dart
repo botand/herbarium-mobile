@@ -19,7 +19,6 @@ class StartupViewModel extends BaseViewModel {
   StartupViewModel() {
     riveAnimationController.isActiveChanged.addListener(() {
       _animationIsActive = riveAnimationController.isActive;
-      navigateToHomeScreen();
     });
   }
 
@@ -28,6 +27,14 @@ class StartupViewModel extends BaseViewModel {
         _textAnimationIsFinished &&
         _shadowAnimationIsFinished) {
       _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.home);
+    }
+  }
+
+  void navigateToLoginScreen() {
+    if (!_animationIsActive &&
+        _textAnimationIsFinished &&
+        _shadowAnimationIsFinished) {
+      _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.login);
     }
   }
 }

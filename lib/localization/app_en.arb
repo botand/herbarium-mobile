@@ -24,5 +24,6 @@
     }
   },
   "login_apple": "Apple",
-  "login_google": "Google"
+  "login_google": "Google",
+  "login_failed": "Sign in failed. Please try again"
 }

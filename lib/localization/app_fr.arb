@@ -24,5 +24,6 @@
     }
   },
   "login_apple": "Apple",
-  "login_google": "Google"
+  "login_google": "Google",
+  "login_failed": "Échec de la connexion. Veuillez réessayer"
 }

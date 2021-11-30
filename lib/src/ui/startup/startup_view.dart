@@ -59,7 +59,7 @@ class _StartupViewState extends State<StartupView> {
                     opacity: _textOpacity,
                     onEnd: () {
                       viewmodel.textAnimationIsFinished = true;
-                      viewmodel.navigateToHomeScreen();
+                      viewmodel.navigateToLoginScreen();
                     },
                     child: Text(AppLocalizations.of(context)!.appTitle,
                         style: Theme.of(context).textTheme.headline1!.copyWith(
