@@ -59,7 +59,7 @@ class _StartupViewState extends State<StartupView> {
                     opacity: _textOpacity,
                     onEnd: () {
                       viewmodel.textAnimationIsFinished = true;
-                      viewmodel.navigateToLoginScreen();
+                      viewmodel.silentSignIn();
                     },
                     child: Text(AppLocalizations.of(context)!.appTitle,
                         style: Theme.of(context).textTheme.headline1!.copyWith(
@@ -70,7 +70,7 @@ class _StartupViewState extends State<StartupView> {
               opacity: _shadowOpacity,
               onEnd: () {
                 viewmodel.shadowAnimationIsFinished = true;
-                viewmodel.navigateToHomeScreen();
+                viewmodel.silentSignIn();
               },
               child: Container(
                   height: double.infinity,

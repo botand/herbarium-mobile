@@ -30,6 +30,8 @@ dependencies:
   firebase_crashlytics: ^2.2.2
   rive: ^0.7.28
   fluttertoast: ^8.0.8
+  # Feature: User settings
+  shared_preferences: ^2.0.9
   # Feature: Setup greenhouse
   flutter_reactive_ble: ^5.0.0
   permission_handler: ^8.2.2

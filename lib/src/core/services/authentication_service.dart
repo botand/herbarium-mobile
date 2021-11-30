@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:herbarium_mobile/src/core/constants/preference_flags.dart';
 import 'package:herbarium_mobile/src/core/services/analytics_service.dart';
+import 'package:herbarium_mobile/src/core/services/preferences_service.dart';
 import 'package:logger/logger.dart';
 
 import 'package:herbarium_mobile/src/core/locator.dart';
@@ -12,6 +14,8 @@ class AuthenticationService {
   final Logger _logger = locator<Logger>();
 
   final AnalyticsService _analyticsService = locator<AnalyticsService>();
+
+  final PreferencesService _preferencesService = locator<PreferencesService>();
 
   /// Firebase User.
   User? _user;
@@ -35,6 +39,8 @@ class AuthenticationService {
 
     if (_user == null) return false;
     _analyticsService.setUserProperties(_user!.uid);
+    _preferencesService.setString(PreferenceFlag.userSignInProvider,
+        provider.toString());
     return true;
   }
 
