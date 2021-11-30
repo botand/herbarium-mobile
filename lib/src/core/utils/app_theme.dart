@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   AppTheme._();
-  static const purple = Color(0xff40356f);
+
+  // static const purple = Color(0xff40356f);
+  static const purple = Color(0xff1a152d);
   static const leafGreen = Color(0xff88bd5e);
   static const gray = Color(0xff747474);
 
@@ -13,6 +15,7 @@ class AppTheme {
         primaryColor: purple,
         scaffoldBackgroundColor: purple,
         appBarTheme:
-            theme.appBarTheme.copyWith(backgroundColor: purple, elevation: 0));
+            theme.appBarTheme.copyWith(backgroundColor: purple, elevation: 0)
+    );
   }
 }
