@@ -15,5 +15,14 @@
   "setup_device_wifi_connecting": "Connexion de votre serre sur le wifi...",
   "setup_device_set_name_title": "Donnez lui un nom",
   "setup_device_set_name_placeholder": "Entrez le nom de votre serre",
-  "setup_device_finish": "Terminer!"
+  "setup_device_finish": "Terminer!",
+  "login": "Connectez-vous",
+  "login_sign_with": "Connectez-vous avec {provider}",
+  "@login_sign_with": {
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "login_apple": "Apple",
+  "login_google": "Google"
 }

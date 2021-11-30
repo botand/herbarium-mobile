@@ -15,5 +15,14 @@
   "setup_device_wifi_connecting": "Connecting your greenhouse to the wifi...",
   "setup_device_set_name_title": "Give it a name",
   "setup_device_set_name_placeholder": "Enter the name of your greenhouse",
-  "setup_device_finish": "Finished!"
+  "setup_device_finish": "Finished!",
+  "login": "Sign in",
+  "login_sign_with": "Sign in with {provider}",
+  "@login_sign_with": {
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "login_apple": "Apple",
+  "login_google": "Google"
 }
