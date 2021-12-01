@@ -185,7 +185,9 @@ jobs:
     needs: [ testing, tagValidation ]
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.5.0
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
       - name: Install Android dependencies
         if: matrix.target == 'Android'
         uses: actions/setup-java@v2
