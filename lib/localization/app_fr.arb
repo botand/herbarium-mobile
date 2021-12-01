@@ -5,6 +5,8 @@
     "description": "Nom de l'application"
   },
   "next": "suivant",
+  "title_home": "Accueil",
+  "title_more": "Plus",
   "setup_device_searching": "Recherche d'un nouvel appareil",
   "setup_device_searching_tip": "Vérifier que l'indicateur de statut de votre serre clignote orange.",
   "setup_device_found": "Trouvé!",

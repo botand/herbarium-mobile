@@ -41,8 +41,10 @@ class StartupViewModel extends BaseViewModel {
           .getString(PreferenceFlag.userSignInProvider);
 
       if (provider != null &&
-          await _authenticationService.signIn(AuthenticationProvider.values
-              .firstWhere((element) => element.toString() == provider))) {
+          await _authenticationService.signIn(
+              AuthenticationProvider.values
+                  .firstWhere((element) => element.toString() == provider),
+              silent: true)) {
         _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.home);
       } else {
         _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.login);

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:herbarium_mobile/src/core/utils/app_theme.dart';
+import 'package:herbarium_mobile/src/ui/base/bottom_bar.dart';
 
 class BaseScaffold extends StatefulWidget {
   const BaseScaffold(
@@ -10,10 +11,12 @@ class BaseScaffold extends StatefulWidget {
       required this.body,
       bool isLoading = false,
       bool isInteractionLimitedWhileLoading = false,
+      bool showBottomBar = true,
       this.fab,
       this.fabLocation})
       : _isLoading = isLoading,
         _isInteractionLimitedWhileLoading = isInteractionLimitedWhileLoading,
+        _showBottomBar = showBottomBar,
         super(key: key);
 
   final AppBar? appBar;
@@ -23,6 +26,8 @@ class BaseScaffold extends StatefulWidget {
   final bool _isLoading;
 
   final bool _isInteractionLimitedWhileLoading;
+
+  final bool _showBottomBar;
 
   final FloatingActionButton? fab;
 
@@ -57,6 +62,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         ),
         floatingActionButton: widget.fab,
         floatingActionButtonLocation: widget.fabLocation,
+        bottomNavigationBar: widget._showBottomBar ? BottomBar() : null,
       );
 
   Widget _buildLoading({bool isInteractionLimitedWhileLoading = false}) =>

@@ -5,6 +5,8 @@
     "description": "Application name"
   },
   "next": "next",
+  "title_home": "Home",
+  "title_more": "More",
   "setup_device_searching": "Searching a new device",
   "setup_device_searching_tip": "Check the status indicator on your greenhouse follow a blinking orange pattern.",
   "setup_device_found": "Found!",
