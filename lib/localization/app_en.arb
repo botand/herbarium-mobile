@@ -4,7 +4,9 @@
   "@appTitle": {
     "description": "Application name"
   },
-  "next": "next",
+  "next": "Next",
+  "yes": "Yes",
+  "no": "No",
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -27,5 +29,7 @@
   },
   "login_apple": "Apple",
   "login_google": "Google",
-  "login_failed": "Sign in failed. Please try again"
+  "login_failed": "Sign in failed. Please try again",
+  "more_sign_out": "Sign out",
+  "more_confirm_sign_out": "Are you sure you want to sign out?"
 }

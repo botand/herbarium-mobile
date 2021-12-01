@@ -62,7 +62,10 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         ),
         floatingActionButton: widget.fab,
         floatingActionButtonLocation: widget.fabLocation,
-        bottomNavigationBar: widget._showBottomBar ? BottomBar() : null,
+        bottomNavigationBar: widget._showBottomBar
+            ? BottomBar(
+                currentRouteName: ModalRoute.of(context)!.settings.name!)
+            : null,
       );
 
   Widget _buildLoading({bool isInteractionLimitedWhileLoading = false}) =>

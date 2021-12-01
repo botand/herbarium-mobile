@@ -18,6 +18,7 @@ class LoginView extends StatelessWidget {
         builder: (BuildContext context, LoginViewModel viewModel,
                 Widget? child) =>
             BaseScaffold(
+                showBottomBar: false,
                 isInteractionLimitedWhileLoading: true,
                 isLoading: viewModel.isBusy,
                 body: Center(

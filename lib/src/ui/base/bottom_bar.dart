@@ -19,7 +19,10 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _defineIndex(ModalRoute.of(context)!.settings.name!);
+    _defineIndex(ModalRoute
+        .of(context)!
+        .settings
+        .name!);
 
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
@@ -36,11 +39,11 @@ class BottomBar extends StatelessWidget {
     switch (routeName) {
       case NavigationRoute.home:
       case NavigationRoute.setup:
-      currentIndex = _greenhousesView;
+        currentIndex = _greenhousesView;
         break;
       case NavigationRoute.more:
       case NavigationRoute.settings:
-      currentIndex = _moreView;
+        currentIndex = _moreView;
         break;
     }
 
@@ -65,21 +68,26 @@ class BottomBar extends StatelessWidget {
   List<BottomNavigationBarItem> _buildItems(BuildContext context) {
     return [
       BottomNavigationBarItem(
-          icon: Padding(
-            padding: const EdgeInsets.only(bottom: 4.0),
-            child: Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    color: Colors.white10),
-                child: const Padding(
-                  padding: EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
-                  child: Icon(Icons.home_outlined),
-                )),
-          ),
+          activeIcon: _buildIcon(Icons.home_outlined),
+          icon: const Icon(Icons.home_outlined),
           label: AppLocalizations.of(context)!.title_home),
       BottomNavigationBarItem(
+          activeIcon: _buildIcon(Icons.dehaze),
           icon: const Icon(Icons.dehaze),
           label: AppLocalizations.of(context)!.title_more),
     ];
   }
+
+  Widget _buildIcon(IconData iconData) =>
+      Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Container(
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                color: Colors.white10),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
+              child: Icon(iconData),
+            )),
+      );
 }
