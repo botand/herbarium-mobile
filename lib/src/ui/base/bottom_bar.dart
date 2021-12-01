@@ -19,10 +19,7 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _defineIndex(ModalRoute
-        .of(context)!
-        .settings
-        .name!);
+    _defineIndex(ModalRoute.of(context)!.settings.name!);
 
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
@@ -78,8 +75,7 @@ class BottomBar extends StatelessWidget {
     ];
   }
 
-  Widget _buildIcon(IconData iconData) =>
-      Padding(
+  Widget _buildIcon(IconData iconData) => Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
         child: Container(
             decoration: const BoxDecoration(

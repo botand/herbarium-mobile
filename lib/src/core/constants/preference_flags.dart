@@ -1,5 +1,1 @@
-
-enum PreferenceFlag {
-  userLanguage,
-  userSignInProvider
-}
+enum PreferenceFlag { userLanguage, userSignInProvider }

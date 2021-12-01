@@ -9,7 +9,7 @@ import 'package:stacked/stacked.dart';
 class LoginViewModel extends BaseViewModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
-  
+
   final NavigationService _navigationService = locator<NavigationService>();
 
   final AppLocalizations appLocalizations;
@@ -18,7 +18,7 @@ class LoginViewModel extends BaseViewModel {
 
   Future<void> signInWithGoogle() async {
     setBusy(true);
-    if(await _authenticationService.signIn(AuthenticationProvider.google)) {
+    if (await _authenticationService.signIn(AuthenticationProvider.google)) {
       _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.home);
     } else {
       Fluttertoast.showToast(msg: appLocalizations.login_failed);

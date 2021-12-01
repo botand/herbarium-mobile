@@ -39,8 +39,8 @@ class AuthenticationService {
 
     if (_user == null) return false;
     _analyticsService.setUserProperties(_user!.uid);
-    _preferencesService.setString(PreferenceFlag.userSignInProvider,
-        provider.toString());
+    _preferencesService.setString(
+        PreferenceFlag.userSignInProvider, provider.toString());
     return true;
   }
 
