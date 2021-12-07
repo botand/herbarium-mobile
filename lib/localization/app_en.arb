@@ -7,6 +7,13 @@
   "next": "Next",
   "yes": "Yes",
   "no": "No",
+  "na": "N/A",
+  "percentage": "{percentage} %",
+  "@percentage": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -31,5 +38,7 @@
   "login_google": "Google",
   "login_failed": "Sign in failed. Please try again",
   "more_sign_out": "Sign out",
-  "more_confirm_sign_out": "Are you sure you want to sign out?"
+  "more_confirm_sign_out": "Are you sure you want to sign out?",
+  "basic_error": "Something went wrong.",
+  "retry": "Retry"
 }

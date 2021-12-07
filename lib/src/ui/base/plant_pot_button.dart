@@ -29,7 +29,7 @@ class PlantPotButton extends StatelessWidget {
       Image.asset(imageAsset),
       if (showLabel)
         Padding(
-          padding: const EdgeInsets.only(top: 0.0),
+          padding: const EdgeInsets.only(top: 2.0),
           child: Center(child: Text(plant!.type.name)),
         )
     ];

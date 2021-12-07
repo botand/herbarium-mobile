@@ -18,9 +18,19 @@ class Greenhouse {
       {required this.uuid,
       required this.name,
       this.plants = const [],
-      required this.tankLevel,
+      this.tankLevel,
       required this.lastTimestamp,
       required this.createdAt});
+
+  /// Get a plant based on its position in the greenhouse
+  Plant? getPlant(int position) {
+    for (Plant plant in plants) {
+      if (plant.position == position) {
+        return plant;
+      }
+    }
+    return null;
+  }
 
   factory Greenhouse.fromJson(Map<String, dynamic> map) => Greenhouse(
       uuid: map["uuid"] as String,

@@ -7,6 +7,13 @@
   "next": "Suivant",
   "yes": "Oui",
   "no": "Non",
+  "na": "N/D",
+  "percentage": "{percentage} %",
+  "@percentage": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
   "title_home": "Accueil",
   "title_more": "Plus",
   "setup_device_searching": "Recherche d'un nouvel appareil",
@@ -31,5 +38,7 @@
   "login_google": "Google",
   "login_failed": "Échec de la connexion. Veuillez réessayer",
   "more_sign_out": "Se déconnecter",
-  "more_confirm_sign_out": "Êtes-vous sur de vouloir vous déconnecter?"
+  "more_confirm_sign_out": "Êtes-vous sur de vouloir vous déconnecter?",
+  "basic_error": "Une erreur est survenue.",
+  "retry": "Essayer à nouveau"
 }
