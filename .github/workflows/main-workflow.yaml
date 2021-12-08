@@ -201,15 +201,15 @@ jobs:
           ./scripts/decrypt_secrets.sh
         env:
           ENCRYPTED_GOOGLE_SERVICE_PASSWORD: ${{ secrets.ENCRYPTED_GOOGLE_SERVICE_PASSWORD }}
-      - name: Install iOS dependencies
-        if: matrix.target == 'iOS'
-        run: |
-          flutter pub get
-          cd ios
-          rm Podfile.lock
-          pod install --repo-update
-          flutter clean
-      # Get dependencies and decrypt needed files.
+#      - name: Install iOS dependencies
+#        if: matrix.target == 'iOS'
+#        run: |
+#          flutter pub get
+#          cd ios
+#          rm Podfile.lock
+#          pod install --repo-update
+#          flutter clean
+#      # Get dependencies and decrypt needed files.
       - run: flutter pub get
 
       # Build the application.
