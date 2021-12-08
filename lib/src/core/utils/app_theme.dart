@@ -17,8 +17,10 @@ class AppTheme {
             .copyWith(primary: purple, secondary: Colors.white),
         appBarTheme:
             theme.appBarTheme.copyWith(backgroundColor: purple, elevation: 0),
-        bottomNavigationBarTheme: theme.bottomNavigationBarTheme
-            .copyWith(backgroundColor: purple, elevation: 10),
+        bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
+            backgroundColor: purple,
+            elevation: 10,
+            selectedIconTheme: const IconThemeData(color: leafGreen)),
         progressIndicatorTheme:
             theme.progressIndicatorTheme.copyWith(color: Colors.white));
   }

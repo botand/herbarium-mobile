@@ -25,7 +25,6 @@ class BottomBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       onTap: (value) => _onTap(value),
       items: _buildItems(context),
-      selectedIconTheme: const IconThemeData(color: AppTheme.leafGreen),
       currentIndex: _currentIndex,
     );
   }
