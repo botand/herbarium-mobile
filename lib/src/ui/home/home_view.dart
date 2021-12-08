@@ -86,18 +86,19 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   Widget _buildNoGreenhouse(BuildContext context, HomeViewModel viewModel) =>
       Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(AppLocalizations.of(context)!.home_no_greenhouse, style: Theme.of(context).textTheme.subtitle1),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () => viewModel.refresh(),
-                  style: ElevatedButton.styleFrom(primary: AppTheme.leafGreen),
-                  child: Text(AppLocalizations.of(context)!.retry))
-            ],
-          ));
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(AppLocalizations.of(context)!.home_no_greenhouse,
+              style: Theme.of(context).textTheme.subtitle1),
+          const SizedBox(height: 20),
+          ElevatedButton(
+              onPressed: () => viewModel.refresh(),
+              style: ElevatedButton.styleFrom(primary: AppTheme.leafGreen),
+              child: Text(AppLocalizations.of(context)!.retry))
+        ],
+      ));
 
   @override
   void dispose() {

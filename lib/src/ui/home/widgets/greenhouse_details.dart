@@ -53,8 +53,13 @@ class GreenhouseDetails extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 60, width: 60, child: RingLedAnimated(pattern: getPattern())),
-            Expanded(child: Center(child: Text(getStatus(AppLocalizations.of(context)!)))),
+            SizedBox(
+                height: 60,
+                width: 60,
+                child: RingLedAnimated(pattern: getPattern())),
+            Expanded(
+                child: Center(
+                    child: Text(getStatus(AppLocalizations.of(context)!)))),
           ],
         ),
       );

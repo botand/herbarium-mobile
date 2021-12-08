@@ -8,16 +8,17 @@ class PlantPotButton extends StatelessWidget {
 
   final bool showLabel;
 
-  const PlantPotButton({Key? key, this.onTap, this.plant, this.showLabel = true})
+  const PlantPotButton(
+      {Key? key, this.onTap, this.plant, this.showLabel = true})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: onTap,
-    child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: plant != null ? _buildPlant() : _buildFrenchClip()),
-  );
+        onTap: onTap,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: plant != null ? _buildPlant() : _buildFrenchClip()),
+      );
 
   List<Widget> _buildPlant() {
     String imageAsset = "assets/images/plant_pot_with_light_off.png";

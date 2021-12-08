@@ -1,4 +1,3 @@
-
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/services/api_service.dart';
@@ -16,7 +15,8 @@ class GreenhousesRepository {
     // TODO retrieve from cache
 
     final fetchedGreenhouses = await _apiService.getGreenhouses();
-    _logger.i("$runtimeType - getGreenhouses fetched ${fetchedGreenhouses.length} greenhouses");
+    _logger.i(
+        "$runtimeType - getGreenhouses fetched ${fetchedGreenhouses.length} greenhouses");
 
     _greenhouses.clear();
     _greenhouses.addAll(fetchedGreenhouses);
@@ -25,5 +25,4 @@ class GreenhousesRepository {
 
     return _greenhouses;
   }
-
 }

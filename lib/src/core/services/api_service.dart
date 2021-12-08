@@ -43,6 +43,8 @@ class ApiService {
     final json = jsonDecode(result.body) as List<dynamic>;
     _logger.d("$runtimeType - getGreenhouses - ${result.statusCode}");
 
-    return json.map((e) => Greenhouse.fromJson(e as Map<String, dynamic>)).toList();
+    return json
+        .map((e) => Greenhouse.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 }
