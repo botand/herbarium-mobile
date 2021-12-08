@@ -19,9 +19,10 @@ class SensorData {
 
   factory SensorData.fromJson(Map<String, dynamic> map) => SensorData(
       type: SensorType.values.firstWhere((element) =>
-          element.toString().toUpperCase() == (map["type"] as String)),
+          element.toString().split(".")[1].toUpperCase() ==
+          (map["type"] as String)),
       timestamp: DateTime.parse(map['timestamp'] as String),
-      value: map["value"] as double,
+      value: double.parse((map["value"] as double).toStringAsFixed(2)),
       plantUuid: map["plant_uuid"]);
 }
 
