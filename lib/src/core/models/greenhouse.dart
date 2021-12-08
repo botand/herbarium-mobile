@@ -36,13 +36,13 @@ class Greenhouse {
       uuid: map["uuid"] as String,
       name: map["name"] as String,
       plants: map["plants"] != null
-          ? (map["plants"] as List<Map<String, dynamic>>)
+          ? (map["plants"] as List<dynamic>)
               .map((e) => Plant.fromJson(e))
               .toList()
           : [],
       tankLevel: map["tank_level"] != null
           ? SensorData.fromJson(map["tank_level"] as Map<String, dynamic>)
           : null,
-      lastTimestamp: DateTime.parse(map['last_timestamp'] as String),
+      lastTimestamp: DateTime.parse(map['created_at'] as String),
       createdAt: DateTime.parse(map['created_at'] as String));
 }

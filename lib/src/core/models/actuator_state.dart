@@ -19,7 +19,8 @@ class ActuatorState {
 
   factory ActuatorState.fromJson(Map<String, dynamic> map) => ActuatorState(
       type: ActuatorType.values.firstWhere((element) =>
-          element.toString().toUpperCase() == (map["type"] as String)),
+          element.toString().split(".")[1].toUpperCase() ==
+          (map["type"] as String)),
       timestamp: DateTime.parse(map['timestamp'] as String),
       status: map["value"] as bool,
       plantUuid: map["plant_uuid"]);

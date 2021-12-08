@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:herbarium_mobile/src/core/constants/urls.dart';
+import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/services/authentication_service.dart';
+import 'package:herbarium_mobile/src/core/utils/http_exception.dart';
 import 'package:http/http.dart';
 
 import 'package:herbarium_mobile/src/core/locator.dart';
@@ -22,11 +26,22 @@ class ApiService {
         'Authorization': 'Bearer ${await _authenticationService.userToken}'
       };
 
+  /// Retrieve every greenhouses linked to the signed user.
+  /// Will throw an [HttpException] if the results of the request isn't successful.
   Future<List<Greenhouse>> getGreenhouses() async {
     final result = await _client.get(Uri.parse(Urls.getGreenhousesByUser),
         headers: await _headers);
 
-    _logger.i("Data received: ${result.statusCode}");
-    return true;
+    if (result.statusCode >= 400) {
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.getGreenhousesByUser);
+    }
+
+    final json = jsonDecode(result.body) as List<dynamic>;
+    _logger.d("$runtimeType - getGreenhouses - ${result.body}");
+
+    return json.map((e) => Greenhouse.fromJson(e as Map<String, dynamic>)).toList();
   }
 }
