@@ -1,6 +1,5 @@
 import 'package:herbarium_mobile/src/core/models/actuator_state.dart';
 import 'package:herbarium_mobile/src/core/models/plant_type.dart';
-import 'package:herbarium_mobile/src/core/models/sensor_data.dart';
 
 class Plant {
   final String uuid;

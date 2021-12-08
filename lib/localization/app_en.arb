@@ -40,5 +40,9 @@
   "more_sign_out": "Sign out",
   "more_confirm_sign_out": "Are you sure you want to sign out?",
   "basic_error": "Something went wrong.",
-  "retry": "Retry"
+  "retry": "Retry",
+  "home_no_greenhouse": "We didn't found any greenhouse linked to your account.",
+  "greenhouse_status_tank_empty": "Tank empty",
+  "greenhouse_status_update_in_progress": "Upgrade in progress",
+  "greenhouse_status_connection_lost": "Connection lost"
 }
