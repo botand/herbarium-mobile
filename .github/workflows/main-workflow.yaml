@@ -214,7 +214,7 @@ jobs:
 
       # Build the application.
       - name: Build the application
-        run: flutter build -v ${{ matrix.build_target }} ${{ matrix.build_args }} --release
+        run: flutter build ${{ matrix.build_target }} ${{ matrix.build_args }} --release
 
       - name: Rename Android build
         if: matrix.target == 'Android'
