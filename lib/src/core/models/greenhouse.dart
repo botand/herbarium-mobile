@@ -43,6 +43,6 @@ class Greenhouse {
       tankLevel: map["tank_level"] != null
           ? SensorData.fromJson(map["tank_level"] as Map<String, dynamic>)
           : null,
-      lastTimestamp: DateTime.parse(map['created_at'] as String),
+      lastTimestamp: DateTime.parse(map['last_timestamp'] as String),
       createdAt: DateTime.parse(map['created_at'] as String));
 }

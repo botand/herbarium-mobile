@@ -15,9 +15,9 @@ class Plant {
 
   final double? overrideLightExposureMinDuration;
 
-  final SensorData? moistureLastReading;
+  final double? moistureLastReading;
 
-  final SensorData? lightLastReading;
+  final double? lightLastReading;
 
   final ActuatorState? valveStatus;
 
@@ -47,12 +47,10 @@ class Plant {
       overrideLightExposureMinDuration:
           map["light_exposure_min_duration"] as double?,
       moistureLastReading: map["moisture_last_reading"] != null
-          ? SensorData.fromJson(
-              map["moisture_last_reading"] as Map<String, dynamic>)
+          ?  double.parse((map["moisture_last_reading"] as double).toStringAsFixed(2))
           : null,
       lightLastReading: map["light_last_reading"] != null
-          ? SensorData.fromJson(
-              map["light_last_reading"] as Map<String, dynamic>)
+          ? double.parse((map["light_last_reading"] as double).toStringAsFixed(2))
           : null,
       valveStatus: map["valve_status"] != null
           ? ActuatorState.fromJson(map["valve_status"] as Map<String, dynamic>)
