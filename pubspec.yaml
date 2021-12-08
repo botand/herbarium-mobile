@@ -5,7 +5,7 @@ description: Companion application for the Herbarium garden
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.2+1
+version: 0.2.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -29,9 +29,16 @@ dependencies:
   firebase_analytics: ^8.3.3
   firebase_crashlytics: ^2.2.2
   rive: ^0.7.28
+  fluttertoast: ^8.0.8
+  # Feature: User settings
+  shared_preferences: ^2.0.9
+  # Feature: Setup greenhouse
   flutter_reactive_ble: ^5.0.0
   permission_handler: ^8.2.2
   device_info_plus: ^3.0.1
+  # Feature: Sign in
+  firebase_auth: ^3.2.0
+  google_sign_in: ^5.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +72,9 @@ flutter:
     - family: RougeScript
       fonts:
         - asset: assets/fonts/RougeScript-Regular.ttf
+    - family:  CustomIcons
+      fonts:
+        - asset: assets/fonts/CustomIcons.ttf
 
 flutter_intl:
   enabled: true

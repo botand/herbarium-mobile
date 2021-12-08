@@ -1,0 +1,1 @@
+enum PreferenceFlag { userLanguage, userSignInProvider }

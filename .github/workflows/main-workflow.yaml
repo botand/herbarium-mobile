@@ -74,8 +74,19 @@ jobs:
       # Get flutter dependencies.
       - run: flutter pub get
 
-      # Check the format of the code and check if the code has any errors/warnings
-      - run: flutter format --set-exit-if-changed .
+      # Check the format of the code and commit the formatted files.
+      - name: Format files
+        run: flutter format lib test
+      - name: Commit formatted files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: "*.dart"
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: "Apply format."
+          add_options: '-u'
+
+      # Check if the code has any errors/warnings
       - run: flutter analyze
 
       # Retrieve the last commit message and check if the commit message contains [CI UPDATE GOLDENS].
@@ -155,7 +166,7 @@ jobs:
       matrix:
         target: [ iOS, Android ]
         include:
-          - os: macos-latest
+          - os: macos-11
             target: iOS
             build_target: ios
             build_args: --no-codesign
@@ -174,7 +185,9 @@ jobs:
     needs: [ testing, tagValidation ]
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.5.0
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
       - name: Install Android dependencies
         if: matrix.target == 'Android'
         uses: actions/setup-java@v2
@@ -188,15 +201,15 @@ jobs:
           ./scripts/decrypt_secrets.sh
         env:
           ENCRYPTED_GOOGLE_SERVICE_PASSWORD: ${{ secrets.ENCRYPTED_GOOGLE_SERVICE_PASSWORD }}
-      - name: Install iOS dependencies
-        if: matrix.target == 'iOS'
-        run: |
-          flutter pub get
-          cd ios
-          rm Podfile.lock
-          pod install --repo-update
-          flutter clean
-      # Get dependencies and decrypt needed files.
+#      - name: Install iOS dependencies
+#        if: matrix.target == 'iOS'
+#        run: |
+#          flutter pub get
+#          cd ios
+#          rm Podfile.lock
+#          pod install --repo-update
+#          flutter clean
+#      # Get dependencies.
       - run: flutter pub get
 
       # Build the application.

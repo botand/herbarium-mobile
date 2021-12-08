@@ -4,7 +4,18 @@
   "@appTitle": {
     "description": "Application name"
   },
-  "next": "next",
+  "next": "Next",
+  "yes": "Yes",
+  "no": "No",
+  "na": "N/A",
+  "percentage": "{percentage} %",
+  "@percentage": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "title_home": "Home",
+  "title_more": "More",
   "setup_device_searching": "Searching a new device",
   "setup_device_searching_tip": "Check the status indicator on your greenhouse follow a blinking orange pattern.",
   "setup_device_found": "Found!",
@@ -15,5 +26,23 @@
   "setup_device_wifi_connecting": "Connecting your greenhouse to the wifi...",
   "setup_device_set_name_title": "Give it a name",
   "setup_device_set_name_placeholder": "Enter the name of your greenhouse",
-  "setup_device_finish": "Finished!"
+  "setup_device_finish": "Finished!",
+  "login": "Sign in",
+  "login_sign_with": "Sign in with {provider}",
+  "@login_sign_with": {
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "login_apple": "Apple",
+  "login_google": "Google",
+  "login_failed": "Sign in failed. Please try again",
+  "more_sign_out": "Sign out",
+  "more_confirm_sign_out": "Are you sure you want to sign out?",
+  "basic_error": "Something went wrong.",
+  "retry": "Retry",
+  "home_no_greenhouse": "We didn't found any greenhouse linked to your account.",
+  "greenhouse_status_tank_empty": "Tank empty",
+  "greenhouse_status_update_in_progress": "Upgrade in progress",
+  "greenhouse_status_connection_lost": "Connection lost"
 }
