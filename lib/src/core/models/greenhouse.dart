@@ -32,6 +32,19 @@ class Greenhouse {
     return null;
   }
 
+  TankStatus get tankStatus {
+    if (tankLevel == null) {
+      return TankStatus.unknown;
+    }
+    if (tankLevel != null && tankLevel!.value < 10.0) {
+      return TankStatus.empty;
+    }
+    if (tankLevel != null && tankLevel!.value < 20.0) {
+      return TankStatus.nearlyEmpty;
+    }
+    return TankStatus.normal;
+  }
+
   factory Greenhouse.fromJson(Map<String, dynamic> map) => Greenhouse(
       uuid: map["uuid"] as String,
       name: map["name"] as String,
@@ -46,3 +59,5 @@ class Greenhouse {
       lastTimestamp: DateTime.parse(map['last_timestamp'] as String),
       createdAt: DateTime.parse(map['created_at'] as String));
 }
+
+enum TankStatus { unknown, normal, nearlyEmpty, empty }

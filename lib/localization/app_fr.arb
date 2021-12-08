@@ -43,6 +43,10 @@
   "retry": "Essayer à nouveau",
   "home_no_greenhouse": "Nous n'avons pas trouver de serre reliés à votre compte.",
   "greenhouse_status_tank_empty": "Réservoir vide",
+  "greenhouse_status_tank_nearly_empty": "Réservoir presque vide",
   "greenhouse_status_update_in_progress": "Mise à jour en cours",
-  "greenhouse_status_connection_lost": "Connexion perdue"
+  "greenhouse_status_connection_lost": "Connexion perdue",
+  "plant_stade_germination": "Germination",
+  "plant_stade_growing": "Croissance",
+  "plant_stade_collectable": "Récoltable",
 }

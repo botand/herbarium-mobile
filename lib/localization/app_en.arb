@@ -43,6 +43,10 @@
   "retry": "Retry",
   "home_no_greenhouse": "We didn't found any greenhouse linked to your account.",
   "greenhouse_status_tank_empty": "Tank empty",
+  "greenhouse_status_tank_nearly_empty": "Tank nearly empty",
   "greenhouse_status_update_in_progress": "Upgrade in progress",
-  "greenhouse_status_connection_lost": "Connection lost"
+  "greenhouse_status_connection_lost": "Connection lost",
+  "plant_stade_germination": "Germination",
+  "plant_stade_growing": "Growing",
+  "plant_stade_harvestable": "Harvestable",
 }
