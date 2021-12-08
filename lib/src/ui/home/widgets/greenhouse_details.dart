@@ -60,7 +60,7 @@ class GreenhouseDetails extends StatelessWidget {
       );
 
   RingPattern getPattern() {
-    if (greenhouse.lastTimestamp.difference(DateTime.now()).inMinutes > 15) {
+    if ((DateTime.now()).difference(greenhouse.lastTimestamp).inMinutes > 15) {
       return RingPattern.breathingRed;
     }
     if (greenhouse.tankLevel != null && greenhouse.tankLevel!.value < 20.0) {
@@ -70,7 +70,7 @@ class GreenhouseDetails extends StatelessWidget {
   }
 
   String getStatus(AppLocalizations intl) {
-    if (greenhouse.lastTimestamp.difference(DateTime.now()).inMinutes > 15) {
+    if ((DateTime.now()).difference(greenhouse.lastTimestamp).inMinutes > 15) {
       return intl.greenhouse_status_connection_lost;
     }
     if (greenhouse.tankLevel != null && greenhouse.tankLevel!.value < 20.0) {

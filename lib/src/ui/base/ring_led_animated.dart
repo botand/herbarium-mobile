@@ -5,7 +5,7 @@ class RingLedAnimated extends StatelessWidget {
   static const _riveFile = "assets/animations/ring_led_animations.riv";
   final RingPattern pattern;
 
-  RingLedAnimated({Key? key, this.pattern = RingPattern.solidLeafGreen})
+  const RingLedAnimated({Key? key, this.pattern = RingPattern.solidLeafGreen})
       : super(key: key);
 
   @override

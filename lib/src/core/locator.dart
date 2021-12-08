@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:herbarium_mobile/src/core/repositories/greenhouse_repository.dart';
 import 'package:herbarium_mobile/src/core/services/analytics_service.dart';
 import 'package:herbarium_mobile/src/core/services/api_service.dart';
 import 'package:herbarium_mobile/src/core/services/authentication_service.dart';
@@ -17,4 +18,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => PreferencesService());
   locator.registerLazySingleton(() => ApiService());
+  locator.registerLazySingleton(() => GreenhousesRepository());
 }

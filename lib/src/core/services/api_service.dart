@@ -33,6 +33,7 @@ class ApiService {
         headers: await _headers);
 
     if (result.statusCode >= 400) {
+      _logger.e("$runtimeType - getGreenhouses - Failed ${result.statusCode}");
       throw HttpException(
           httpCode: result.statusCode,
           message: result.body,
@@ -40,7 +41,7 @@ class ApiService {
     }
 
     final json = jsonDecode(result.body) as List<dynamic>;
-    _logger.d("$runtimeType - getGreenhouses - ${result.body}");
+    _logger.d("$runtimeType - getGreenhouses - ${result.statusCode}");
 
     return json.map((e) => Greenhouse.fromJson(e as Map<String, dynamic>)).toList();
   }
