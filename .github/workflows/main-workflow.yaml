@@ -166,7 +166,7 @@ jobs:
       matrix:
         target: [ iOS, Android ]
         include:
-          - os: macos-latest
+          - os: macos-11
             target: iOS
             build_target: ios
             build_args: --no-codesign
@@ -209,12 +209,12 @@ jobs:
 #          rm Podfile.lock
 #          pod install --repo-update
 #          flutter clean
-#      # Get dependencies and decrypt needed files.
+#      # Get dependencies.
       - run: flutter pub get
 
       # Build the application.
       - name: Build the application
-        run: flutter build ${{ matrix.build_target }} ${{ matrix.build_args }} --release
+        run: flutter build -v ${{ matrix.build_target }} ${{ matrix.build_args }} --release
 
       - name: Rename Android build
         if: matrix.target == 'Android'
