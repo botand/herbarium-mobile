@@ -27,7 +27,9 @@ class PlantPotButton extends StatelessWidget {
       imageAsset = "assets/images/plant_pot_with_light_on.png";
     }
     return [
-      Image.asset(imageAsset),
+      AspectRatio(
+          aspectRatio: 1,
+          child: Image.asset(imageAsset, fit: BoxFit.scaleDown)),
       if (showLabel)
         Padding(
           padding: const EdgeInsets.only(top: 2.0),
@@ -36,6 +38,9 @@ class PlantPotButton extends StatelessWidget {
     ];
   }
 
-  List<Widget> _buildFrenchClip() =>
-      [Image.asset("assets/images/french_clip_light_off.png")];
+  List<Widget> _buildFrenchClip() => [
+        AspectRatio(
+            aspectRatio: 1,
+            child: Image.asset("assets/images/french_clip_light_off.png"))
+      ];
 }
