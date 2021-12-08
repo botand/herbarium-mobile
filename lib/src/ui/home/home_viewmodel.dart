@@ -30,7 +30,8 @@ class HomeViewModel extends FutureViewModel {
 
   /// Return the greenhouse currently displayed.
   Greenhouse? get currentGreenhouse {
-    if(_greenhousesRepository.greenhouses.isEmpty || _currentGreenhouseIndex >= _greenhousesRepository.greenhouses.length) {
+    if (_greenhousesRepository.greenhouses.isEmpty ||
+        _currentGreenhouseIndex >= _greenhousesRepository.greenhouses.length) {
       return null;
     }
     return _greenhousesRepository.greenhouses[_currentGreenhouseIndex];
