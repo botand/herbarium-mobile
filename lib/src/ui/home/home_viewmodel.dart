@@ -67,7 +67,7 @@ class HomeViewModel extends FutureViewModel {
       _logger.e("$runtimeType - Refresh failed");
       onError(e);
     }
-    _logger.d("${runtimeType} - Refresh ended");
+    _logger.d("$runtimeType - Refresh ended");
     setBusy(false);
   }
 

@@ -3,7 +3,6 @@ import 'package:herbarium_mobile/src/core/constants/navigation_route.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:herbarium_mobile/src/core/utils/app_theme.dart';
 
 class BottomBar extends StatelessWidget {
   static const int _greenhousesView = 0;

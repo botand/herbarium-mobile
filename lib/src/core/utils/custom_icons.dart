@@ -9,6 +9,7 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
   static const String? _kFontPkg = null;
 
+  //ignore: constant_identifier_names
   static const IconData water_drop_outline =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
