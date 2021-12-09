@@ -43,6 +43,39 @@
   "retry": "Retry",
   "home_no_greenhouse": "We didn't found any greenhouse linked to your account.",
   "greenhouse_status_tank_empty": "Tank empty",
+  "greenhouse_status_tank_nearly_empty": "Tank nearly empty",
   "greenhouse_status_update_in_progress": "Upgrade in progress",
-  "greenhouse_status_connection_lost": "Connection lost"
+  "greenhouse_status_connection_lost": "Connection lost",
+  "plant_stage_germination": "Germination",
+  "plant_stage_growing": "Growing",
+  "plant_stage_harvestable": "Harvestable",
+  "plant_type_chive": "Chive",
+  "plant_type_coriander": "Coriander",
+  "plant_type_parsley": "Parsley",
+  "plant_type_thyme": "Thyme",
+  "plant_type_lettuce": "Lettuce",
+  "plant_type_cherry_tomatoes": "Cherry tomatoes",
+  "plant_type_default": "Custom",
+  "plant_info": "Plant informations",
+  "plant_details_moisture_goal": "Dirt moisture goal: {percentage}%",
+  "@plant_details_moisture_goal": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "plant_details_exposure_duration": "Light exposure goal: {goal}h",
+  "@plant_details_exposure_duration": {
+    "placeholders": {
+      "goal": {}
+    }
+  },
+  "planted_on": "Planted on {date}",
+  "@planted_on": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }

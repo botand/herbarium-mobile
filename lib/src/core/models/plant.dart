@@ -20,7 +20,7 @@ class Plant {
 
   final ActuatorState? valveStatus;
 
-  final ActuatorState? ligthStripStatus;
+  final ActuatorState? lightStripStatus;
 
   final bool removed;
 
@@ -34,8 +34,21 @@ class Plant {
       this.moistureLastReading,
       this.lightLastReading,
       this.valveStatus,
-      this.ligthStripStatus,
+      this.lightStripStatus,
       this.removed = false});
+
+  /// Determine the plant current stage.
+  PlantStage get plantStage {
+    final days = (DateTime.now()).difference(plantedAt).inDays;
+
+    if (days < type.germinationTime) {
+      return PlantStage.germination;
+    }
+    if (days < type.growingTime) {
+      return PlantStage.growing;
+    }
+    return PlantStage.harvestable;
+  }
 
   factory Plant.fromJson(Map<String, dynamic> map) => Plant(
       uuid: map["uuid"] as String,
@@ -56,9 +69,26 @@ class Plant {
       valveStatus: map["valve_status"] != null
           ? ActuatorState.fromJson(map["valve_status"] as Map<String, dynamic>)
           : null,
-      ligthStripStatus: map["light_strip_status"] != null
+      lightStripStatus: map["light_strip_status"] != null
           ? ActuatorState.fromJson(
               map["light_strip_status"] as Map<String, dynamic>)
           : null,
       removed: map["removed"] ?? false);
+
+  @override
+  String toString() {
+    return 'Plant{uuid: $uuid, '
+        'position: $position, '
+        'plantedAt: $plantedAt, '
+        'type: $type, '
+        'overrideMoistureGoal: $overrideMoistureGoal, '
+        'overrideLightExposureMinDuration: $overrideLightExposureMinDuration, '
+        'moistureLastReading: $moistureLastReading, '
+        'lightLastReading: $lightLastReading, '
+        'valveStatus: $valveStatus, '
+        'lightStripStatus: $lightStripStatus, '
+        'removed: $removed}';
+  }
 }
+
+enum PlantStage { germination, growing, harvestable }

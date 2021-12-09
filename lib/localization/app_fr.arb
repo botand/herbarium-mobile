@@ -43,6 +43,39 @@
   "retry": "Essayer à nouveau",
   "home_no_greenhouse": "Nous n'avons pas trouver de serre reliés à votre compte.",
   "greenhouse_status_tank_empty": "Réservoir vide",
+  "greenhouse_status_tank_nearly_empty": "Réservoir presque vide",
   "greenhouse_status_update_in_progress": "Mise à jour en cours",
-  "greenhouse_status_connection_lost": "Connexion perdue"
+  "greenhouse_status_connection_lost": "Connexion perdue",
+  "plant_stage_germination": "Germination",
+  "plant_stage_growing": "Croissance",
+  "plant_stage_harvestable": "Récoltable",
+  "plant_type_chive": "Ciboulette",
+  "plant_type_coriander": "Coriandre",
+  "plant_type_parsley": "Persil",
+  "plant_type_thyme": "Thym",
+  "plant_type_lettuce": "Laitue",
+  "plant_type_cherry_tomatoes": "Tomates cerises",
+  "plant_type_default": "Personnaliser",
+  "plant_info": "Informations de la plante",
+  "plant_details_moisture_goal": "Objectif d'humidité de la terre: {percentage}%",
+  "@plant_details_moisture_goal": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "plant_details_exposure_duration": "Objectif d'exposition lumineuse: {goal}h",
+  "@plant_details_exposure_duration": {
+    "placeholders": {
+      "goal": {}
+    }
+  },
+  "planted_on": "Planté le {date}",
+  "@planted_on": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }
