@@ -36,7 +36,7 @@ class Greenhouse {
     if (tankLevel == null) {
       return TankStatus.unknown;
     }
-    if (tankLevel != null && tankLevel!.value < 10.0) {
+    if (tankLevel != null && tankLevel!.value <= 0.0) {
       return TankStatus.empty;
     }
     if (tankLevel != null && tankLevel!.value < 20.0) {
