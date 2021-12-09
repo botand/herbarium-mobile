@@ -31,7 +31,14 @@ class GreenhouseDetails extends StatelessWidget {
                 shrinkWrap: true,
                 // reverse: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return PlantPotButton(plant: greenhouse.getPlant(index));
+                  Plant? plant = greenhouse.getPlant(index);
+                  return PlantPotButton(
+                      plant: plant,
+                      onTap: plant != null
+                          ? () => _navigationService.pushNamed(
+                              NavigationRoute.plantDetails,
+                              arguments: plant)
+                          : null);
                 }),
           ),
           _buildGreenhouseStatusBar(context),

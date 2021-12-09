@@ -48,5 +48,5 @@
   "greenhouse_status_connection_lost": "Connexion perdue",
   "plant_stade_germination": "Germination",
   "plant_stade_growing": "Croissance",
-  "plant_stade_collectable": "Récoltable",
+  "plant_stade_collectable": "Récoltable"
 }
