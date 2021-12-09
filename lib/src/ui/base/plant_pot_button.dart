@@ -10,6 +10,9 @@ class PlantPotButton extends StatelessWidget {
 
   final bool showLabel;
 
+  String get _plantTagAsset =>
+      "assets/images/plant_${plant!.type.name}_tag.png";
+
   const PlantPotButton(
       {Key? key, this.onTap, this.plant, this.showLabel = true})
       : super(key: key);
@@ -19,26 +22,37 @@ class PlantPotButton extends StatelessWidget {
         onTap: onTap,
         child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: plant != null ? _buildPlant(context) : _buildFrenchClip()),
+            children:
+                plant != null ? _buildPlant(context) : _buildFrenchClip()),
       );
 
   List<Widget> _buildPlant(BuildContext context) {
-    String imageAsset = "assets/images/plant_pot_with_light_off.png";
+    String plantPotImageAsset = "assets/images/plant_pot_with_light_off.png";
 
     if (plant!.lightStripStatus != null && plant!.lightStripStatus!.status) {
-      imageAsset = "assets/images/plant_pot_with_light_on.png";
+      plantPotImageAsset = "assets/images/plant_pot_with_light_on.png";
     }
     return [
       Hero(
         tag: plant!.uuid,
-        child: AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(imageAsset, fit: BoxFit.fitHeight)),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(plantPotImageAsset, fit: BoxFit.fitHeight)),
+            if (plant!.type.id > 1)
+              AspectRatio(
+                  aspectRatio: 6 / 2, child: Image.asset(_plantTagAsset)),
+          ],
+        ),
       ),
       if (showLabel)
         Padding(
           padding: const EdgeInsets.only(top: 2.0),
-          child: Center(child: Text(plant!.type.toLocalized(AppLocalizations.of(context)!))),
+          child: Center(
+              child:
+                  Text(plant!.type.toLocalized(AppLocalizations.of(context)!))),
         )
     ];
   }
