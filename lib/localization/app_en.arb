@@ -55,5 +55,27 @@
   "plant_type_thyme": "Thyme",
   "plant_type_lettuce": "Lettuce",
   "plant_type_cherry_tomatoes": "Cherry tomatoes",
-  "plant_type_default": "Custom"
+  "plant_type_default": "Custom",
+  "plant_info": "Plant informations",
+  "plant_details_moisture_goal": "Dirt moisture goal: {percentage}%",
+  "@plant_details_moisture_goal": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "plant_details_exposure_duration": "Light exposure goal: {goal}h",
+  "@plant_details_exposure_duration": {
+    "placeholders": {
+      "goal": {}
+    }
+  },
+  "planted_on": "Planted on {date}",
+  "@planted_on": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }

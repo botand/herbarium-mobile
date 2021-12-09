@@ -55,5 +55,27 @@
   "plant_type_thyme": "Thym",
   "plant_type_lettuce": "Laitue",
   "plant_type_cherry_tomatoes": "Tomates cerises",
-  "plant_type_default": "Personnaliser"
+  "plant_type_default": "Personnaliser",
+  "plant_info": "Informations de la plante",
+  "plant_details_moisture_goal": "Objectif d'humidité de la terre: {percentage}%",
+  "@plant_details_moisture_goal": {
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "plant_details_exposure_duration": "Objectif d'exposition lumineuse: {goal}h",
+  "@plant_details_exposure_duration": {
+    "placeholders": {
+      "goal": {}
+    }
+  },
+  "planted_on": "Planté le {date}",
+  "@planted_on": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }
