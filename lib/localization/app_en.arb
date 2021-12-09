@@ -46,7 +46,7 @@
   "greenhouse_status_tank_nearly_empty": "Tank nearly empty",
   "greenhouse_status_update_in_progress": "Upgrade in progress",
   "greenhouse_status_connection_lost": "Connection lost",
-  "plant_stade_germination": "Germination",
-  "plant_stade_growing": "Growing",
-  "plant_stade_harvestable": "Harvestable"
+  "plant_stage_germination": "Germination",
+  "plant_stage_growing": "Growing",
+  "plant_stage_harvestable": "Harvestable"
 }

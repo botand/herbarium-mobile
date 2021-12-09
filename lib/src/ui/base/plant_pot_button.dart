@@ -44,6 +44,7 @@ class PlantPotButton extends StatelessWidget {
   List<Widget> _buildFrenchClip() => [
         AspectRatio(
             aspectRatio: 1,
-            child: Image.asset("assets/images/french_clip_light_off.png", fit: BoxFit.fitHeight))
+            child: Image.asset("assets/images/french_clip_light_off.png",
+                fit: BoxFit.fitHeight))
       ];
 }

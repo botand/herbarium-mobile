@@ -37,17 +37,17 @@ class Plant {
       this.ligthStripStatus,
       this.removed = false});
 
-  /// Determine the plant current stade.
-  PlantStade get plantStade {
+  /// Determine the plant current stage.
+  PlantStage get plantStage {
     final days = (DateTime.now()).difference(plantedAt).inDays;
 
-    if(days < type.germinationTime) {
-      return PlantStade.germination;
+    if (days < type.germinationTime) {
+      return PlantStage.germination;
     }
-    if(days < type.growingTime) {
-      return PlantStade.growing;
+    if (days < type.growingTime) {
+      return PlantStage.growing;
     }
-    return PlantStade.harvestable;
+    return PlantStage.harvestable;
   }
 
   factory Plant.fromJson(Map<String, dynamic> map) => Plant(
@@ -76,8 +76,4 @@ class Plant {
       removed: map["removed"] ?? false);
 }
 
-enum PlantStade {
-  germination,
-  growing,
-  harvestable
-}
+enum PlantStage { germination, growing, harvestable }

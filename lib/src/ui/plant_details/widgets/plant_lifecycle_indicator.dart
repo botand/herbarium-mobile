@@ -41,7 +41,7 @@ class PlantLifeCycleIndicator extends StatelessWidget {
               ),
             ),
             Center(
-              child: Text(_determineState(AppLocalizations.of(context)!),
+              child: Text(_determineStage(AppLocalizations.of(context)!),
                   style: Theme.of(context).textTheme.headline6),
             )
           ],
@@ -50,20 +50,20 @@ class PlantLifeCycleIndicator extends StatelessWidget {
     );
   }
 
-  String _determineState(AppLocalizations intl) {
-    String stadeString;
-    switch(plant.plantStade) {
-      case PlantStade.germination:
-        stadeString = intl.plant_stade_germination;
+  String _determineStage(AppLocalizations intl) {
+    String stageString;
+    switch (plant.plantStage) {
+      case PlantStage.germination:
+        stageString = intl.plant_stage_germination;
         break;
-      case PlantStade.growing:
-        stadeString = intl.plant_stade_growing;
+      case PlantStage.growing:
+        stageString = intl.plant_stage_growing;
         break;
-      case PlantStade.harvestable:
-        stadeString = intl.plant_stade_harvestable;
+      case PlantStage.harvestable:
+        stageString = intl.plant_stage_harvestable;
         break;
     }
 
-    return stadeString;
+    return stageString;
   }
 }

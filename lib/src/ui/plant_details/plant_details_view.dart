@@ -82,7 +82,7 @@ class PlantDetailsView extends StatelessWidget {
                       SizedBox(
                           width: 150,
                           height: 150,
-                          child: PlantLifeCycleIndicator())
+                          child: PlantLifeCycleIndicator(plant: plant))
                     ],
                   ),
                 )
