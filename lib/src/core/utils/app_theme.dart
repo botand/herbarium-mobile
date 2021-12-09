@@ -22,6 +22,22 @@ class AppTheme {
             elevation: 10,
             selectedIconTheme: const IconThemeData(color: leafGreen)),
         progressIndicatorTheme:
-            theme.progressIndicatorTheme.copyWith(color: Colors.white));
+            theme.progressIndicatorTheme.copyWith(color: Colors.white),
+        bottomSheetTheme: theme.bottomSheetTheme.copyWith(
+          modalBackgroundColor: purple,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10)))
+        ),
+      sliderTheme: theme.sliderTheme.copyWith(
+        valueIndicatorColor: Colors.blueGrey,
+        activeTrackColor: leafGreen,
+        inactiveTrackColor: Colors.grey,
+        thumbColor: leafGreen,
+        overlayColor: leafGreen.withAlpha(128),
+        valueIndicatorShape: theme.sliderTheme.valueIndicatorShape
+      )
+    );
   }
 }
