@@ -48,5 +48,12 @@
   "greenhouse_status_connection_lost": "Connexion perdue",
   "plant_stage_germination": "Germination",
   "plant_stage_growing": "Croissance",
-  "plant_stage_collectable": "Récoltable"
+  "plant_stage_harvestable": "Récoltable",
+  "plant_type_chive": "Ciboulette",
+  "plant_type_coriander": "Coriandre",
+  "plant_type_parsley": "Persil",
+  "plant_type_thyme": "Thym",
+  "plant_type_lettuce": "Laitue",
+  "plant_type_cherry_tomatoes": "Tomates cerises",
+  "plant_type_default": "Personnaliser"
 }

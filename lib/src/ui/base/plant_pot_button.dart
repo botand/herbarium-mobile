@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
+import 'package:herbarium_mobile/src/core/models/plant_type.dart';
 
 class PlantPotButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -17,13 +19,13 @@ class PlantPotButton extends StatelessWidget {
         onTap: onTap,
         child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: plant != null ? _buildPlant() : _buildFrenchClip()),
+            children: plant != null ? _buildPlant(context) : _buildFrenchClip()),
       );
 
-  List<Widget> _buildPlant() {
+  List<Widget> _buildPlant(BuildContext context) {
     String imageAsset = "assets/images/plant_pot_with_light_off.png";
 
-    if (plant!.ligthStripStatus != null && plant!.ligthStripStatus!.status) {
+    if (plant!.lightStripStatus != null && plant!.lightStripStatus!.status) {
       imageAsset = "assets/images/plant_pot_with_light_on.png";
     }
     return [
@@ -36,7 +38,7 @@ class PlantPotButton extends StatelessWidget {
       if (showLabel)
         Padding(
           padding: const EdgeInsets.only(top: 2.0),
-          child: Center(child: Text(plant!.type.name)),
+          child: Center(child: Text(plant!.type.toLocalized(AppLocalizations.of(context)!))),
         )
     ];
   }

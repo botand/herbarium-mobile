@@ -48,5 +48,12 @@
   "greenhouse_status_connection_lost": "Connection lost",
   "plant_stage_germination": "Germination",
   "plant_stage_growing": "Growing",
-  "plant_stage_harvestable": "Harvestable"
+  "plant_stage_harvestable": "Harvestable",
+  "plant_type_chive": "Chive",
+  "plant_type_coriander": "Coriander",
+  "plant_type_parsley": "Parsley",
+  "plant_type_thyme": "Thyme",
+  "plant_type_lettuce": "Lettuce",
+  "plant_type_cherry_tomatoes": "Cherry tomatoes",
+  "plant_type_default": "Custom"
 }
