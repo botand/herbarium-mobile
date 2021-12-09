@@ -20,7 +20,7 @@ class PlantLifeCycleIndicator extends StatelessWidget {
     double finalHeight = height ?? MediaQuery.of(context).size.height;
     final totalDays = plant.type.growingTime + plant.type.germinationTime;
     final elapsedDays = (DateTime.now()).difference(plant.plantedAt).inDays;
-    final completion = elapsedDays / totalDays;
+    final completion = (plant.type.growingTime == 0) ? 0.0 : elapsedDays / totalDays;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
