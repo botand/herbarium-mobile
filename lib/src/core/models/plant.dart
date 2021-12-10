@@ -98,7 +98,7 @@ class Plant {
   Map<String, dynamic> toJson() => {
         'uuid': uuid,
         'position': position,
-        'planted_at': plantedOn,
+        'planted_at': plantedOn.toIso8601String(),
         'type': type,
         'override_moisture_goal': overrideMoistureGoal,
         'light_exposure_min_duration': overrideLightExposureMinDuration,

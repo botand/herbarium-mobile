@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             ),
             body: viewModel.isBusy
                 ? const Center(child: CircularProgressIndicator())
-                : viewModel.hasError
+                : viewModel.hasError && viewModel.greenhousesNumber == 0
                     ? _buildError(context, viewModel)
                     : _buildGreenhousePages(context, viewModel)),
       );

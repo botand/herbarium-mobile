@@ -74,8 +74,8 @@ class Greenhouse {
         'name': name,
         'plants': plants,
         'tank_level': tankLevel,
-        'last_timestamp': lastTimestamp,
-        'created_at': createdOn
+        'last_timestamp': lastTimestamp.toIso8601String(),
+        'created_at': createdOn.toIso8601String()
       };
 }
 

@@ -30,6 +30,8 @@ dependencies:
   firebase_crashlytics: ^2.2.2
   rive: ^0.7.28
   fluttertoast: ^8.0.8
+  flutter_cache_manager: ^3.3.0
+  http: ^0.13.4
   # Feature: User settings
   shared_preferences: ^2.0.9
   # Feature: Setup greenhouse
