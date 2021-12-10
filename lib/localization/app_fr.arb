@@ -98,5 +98,6 @@
   "plant_modify_type_title": "Changer le type de plante",
   "greenhouse_modify_title": "Modifier la serre",
   "greenhouse_modify_name": "Nom de la serre",
-  "greenhouse_delete_confirm": "Êtes-vous sûr de vouloir supprimer la serre?"
+  "greenhouse_delete_confirm": "Êtes-vous sûr de vouloir supprimer la serre?",
+  "greenhouse_new_plant": "Nouveau!"
 }

@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:herbarium_mobile/src/core/constants/navigation_route.dart';
-import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
-import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:herbarium_mobile/src/core/utils/custom_icons.dart';
 import 'package:herbarium_mobile/src/ui/base/plant_pot_button.dart';
 import 'package:herbarium_mobile/src/ui/base/ring_led_animated.dart';
 
 class GreenhouseDetails extends StatelessWidget {
-  final NavigationService _navigationService = locator<NavigationService>();
-
   final Greenhouse greenhouse;
 
   final Function(Plant) onTap;
 
-  GreenhouseDetails({Key? key, required this.greenhouse, required this.onTap})
+  const GreenhouseDetails({Key? key, required this.greenhouse, required this.onTap})
       : super(key: key);
 
   @override
