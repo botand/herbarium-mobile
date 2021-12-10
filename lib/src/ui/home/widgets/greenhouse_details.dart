@@ -14,7 +14,10 @@ class GreenhouseDetails extends StatelessWidget {
 
   final Greenhouse greenhouse;
 
-  GreenhouseDetails({Key? key, required this.greenhouse}) : super(key: key);
+  final Function(Plant) onTap;
+
+  GreenhouseDetails({Key? key, required this.greenhouse, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -35,9 +38,7 @@ class GreenhouseDetails extends StatelessWidget {
                   return PlantPotButton(
                       plant: plant,
                       onTap: plant != null
-                          ? () => _navigationService.pushNamed(
-                              NavigationRoute.plantDetails,
-                              arguments: plant)
+                          ? () => onTap(plant)
                           : null);
                 }),
           ),

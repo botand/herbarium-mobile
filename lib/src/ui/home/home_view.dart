@@ -33,27 +33,31 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         builder: (context, viewModel, child) => BaseScaffold(
             isLoading: viewModel.isBusy,
             appBar: AppBar(
-              title: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(viewModel.currentGreenhouse?.name ?? ""),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: IconButton(
-                      icon: const Icon(Icons.edit_outlined),
-                      onPressed: () => showModalBottomSheet(
-                          enableDrag: true,
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (context) => ModifyGreenhouseInfoBottomSheet(
-                                greenhouse: viewModel.currentGreenhouse!,
-                                onSave: viewModel.updateCurrentGreenhouse,
-                                onDelete: viewModel.deleteCurrentGreenhouse,
-                              )),
-                    ),
-                  )
-                ],
-              ),
+              title: viewModel.currentGreenhouse != null
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(viewModel.currentGreenhouse!.name),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: IconButton(
+                            icon: const Icon(Icons.edit_outlined),
+                            onPressed: () => showModalBottomSheet(
+                                enableDrag: true,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) =>
+                                    ModifyGreenhouseInfoBottomSheet(
+                                      greenhouse: viewModel.currentGreenhouse!,
+                                      onSave: viewModel.updateCurrentGreenhouse,
+                                      onDelete:
+                                          viewModel.deleteCurrentGreenhouse,
+                                    )),
+                          ),
+                        )
+                      ],
+                    )
+                  : const SizedBox(),
               centerTitle: true,
               automaticallyImplyLeading: false,
               actions: [
@@ -98,7 +102,8 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
               itemCount: viewModel.greenhousesNumber,
               itemBuilder: (BuildContext context, int index) =>
                   GreenhouseDetails(
-                      greenhouse: viewModel.getGreenhouse(index))),
+                      greenhouse: viewModel.getGreenhouse(index),
+                      onTap: viewModel.onPlantTap)),
         ),
         TabPageSelector(indicatorSize: 8.0, controller: viewModel.tabController)
       ],
