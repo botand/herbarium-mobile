@@ -43,6 +43,10 @@ class AppTheme {
             inactiveTrackColor: Colors.grey,
             thumbColor: leafGreen,
             overlayColor: leafGreen.withAlpha(128),
-            valueIndicatorShape: theme.sliderTheme.valueIndicatorShape));
+            valueIndicatorShape: theme.sliderTheme.valueIndicatorShape),
+      dialogTheme: theme.dialogTheme.copyWith(
+        backgroundColor: purple
+      )
+    );
   }
 }

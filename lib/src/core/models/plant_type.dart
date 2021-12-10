@@ -1,4 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:herbarium_mobile/src/core/utils/utils.dart';
 
 class PlantType {
   /// Unique identifier of the plant type
@@ -47,33 +48,5 @@ class PlantType {
 }
 
 extension PlantTypeNameToLocalized on PlantType {
-  String toLocalized(AppLocalizations intl) {
-    String localizedString;
-
-    switch (name) {
-      case "chive":
-        localizedString = intl.plant_type_chive;
-        break;
-      case "coriander":
-        localizedString = intl.plant_type_coriander;
-        break;
-      case "parsley":
-        localizedString = intl.plant_type_parsley;
-        break;
-      case "thyme":
-        localizedString = intl.plant_type_thyme;
-        break;
-      case "lettuce":
-        localizedString = intl.plant_type_lettuce;
-        break;
-      case "cherry_tomatoes":
-        localizedString = intl.plant_type_cherry_tomatoes;
-        break;
-      default:
-        localizedString = intl.plant_type_default;
-        break;
-    }
-
-    return localizedString;
-  }
+  String toLocalized(AppLocalizations intl) => plantTypeToLocalized(intl, name);
 }
