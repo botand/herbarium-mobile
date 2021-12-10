@@ -72,6 +72,25 @@ class ApiService {
         .toList();
   }
 
+  /// Update a specified greenhouse details.
+  Future updateGreenhouseDetails(String greenhouseUuid, String name) async {
+    final result =
+    await _client.post(Uri.parse(Urls.postUpdateGreenhouse(greenhouseUuid)),
+        headers: await _headers,
+        body: jsonEncode({
+          'name': name,
+        }));
+
+    if (result.statusCode >= 400) {
+      _logger
+          .e("$runtimeType - updateGreenhouseDetails - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.postUpdatePlantDetails(greenhouseUuid));
+    }
+  }
+
   /// Update a specified plant details.
   Future updatePlantDetails(String plantUuid, int? typeId,
       double? overrideMoistureGoal, double? overrideLightExposure) async {

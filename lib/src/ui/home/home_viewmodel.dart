@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/repositories/greenhouses_repository.dart';
+import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:herbarium_mobile/src/core/utils/http_exception.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -12,6 +13,8 @@ class HomeViewModel extends FutureViewModel {
   /// Allow the view model to interact with the greenhouses
   final GreenhousesRepository _greenhousesRepository =
       locator<GreenhousesRepository>();
+
+  final NavigationService _navigationService = locator<NavigationService>();
 
   final Logger _logger = locator<Logger>();
 
@@ -92,6 +95,26 @@ class HomeViewModel extends FutureViewModel {
   Greenhouse getGreenhouse(int index) {
     _currentGreenhouseIndex = index;
     return _greenhousesRepository.greenhouses[index];
+  }
+
+  /// Check if the current greenhouse can be updated and do so.
+  /// Will close the bottom sheet if there is nothing to change or if the
+  /// change succeed
+  Future updateCurrentGreenhouse(String name) async {
+    Greenhouse greenhouse =
+        _greenhousesRepository.greenhouses[_currentGreenhouseIndex];
+    if (greenhouse.name != name) {
+      setBusy(true);
+      if (!(await _greenhousesRepository
+          .updateGreenhouse(greenhouse.copyWith(name: name)))) {
+        Fluttertoast.showToast(msg: intl.basic_error);
+      } else {
+        _navigationService.pop();
+      }
+      setBusy(false);
+    } else {
+      _navigationService.pop();
+    }
   }
 
   void onDispose() {

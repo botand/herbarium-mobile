@@ -53,6 +53,25 @@ class GreenhousesRepository {
     return _greenhouses;
   }
 
+  /// Update the [greenhouse] in the database.
+  Future<bool> updateGreenhouse(Greenhouse greenhouse) async {
+    try {
+      _logger.d("$runtimeType - updateGreenhouse: start update plant ${greenhouse.uuid}");
+      await _apiService.updateGreenhouseDetails(greenhouse.uuid, greenhouse.name);
+    } on HttpException catch (_) {
+      _logger.e("$runtimeType - updateGreenhouse: failed");
+      return false;
+    }
+
+    try {
+      _logger.d("$runtimeType - updateGreenhouse: update greenhouses list");
+      await getGreenhouses();
+    } on HttpException catch (_) {
+      _logger.e("$runtimeType - updateGreenhouse: update greenhouses list failed");
+    }
+    return true;
+  }
+
   /// Update the [plant] in the database.
   Future<bool> updatePlant(Plant plant) async {
     try {
