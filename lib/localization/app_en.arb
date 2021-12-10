@@ -7,6 +7,8 @@
   "next": "Next",
   "yes": "Yes",
   "no": "No",
+  "save": "Save",
+  "cancel": "Cancel",
   "na": "N/A",
   "percentage": "{percentage} %",
   "@percentage": {
@@ -89,5 +91,6 @@
   "plant_modify_title": "Update plant",
   "plant_modify_moisture_goal": "Moisture goal",
   "plant_modify_exposure_duration": "Light exposure duration",
-  "plant_modify_type": "Type"
+  "plant_modify_type": "Type",
+  "plant_modify_type_title": "Change plant type"
 }
