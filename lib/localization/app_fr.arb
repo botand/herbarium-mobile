@@ -24,6 +24,7 @@
       }
     }
   },
+  "required": "Requis",
   "title_home": "Accueil",
   "title_more": "Plus",
   "setup_device_searching": "Recherche d'un nouvel appareil",
@@ -92,5 +93,7 @@
   "plant_modify_moisture_goal": "Objectif d'humidité",
   "plant_modify_exposure_duration": "Exposition lumineuse minimum",
   "plant_modify_type": "Type",
-  "plant_modify_type_title": "Changer le type de plante"
+  "plant_modify_type_title": "Changer le type de plante",
+  "greenhouse_modify_title": "Modifier la serre",
+  "greenhouse_modify_name": "Nom de la serre"
 }

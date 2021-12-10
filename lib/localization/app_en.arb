@@ -24,6 +24,7 @@
       }
     }
   },
+  "required": "Required",
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -92,5 +93,7 @@
   "plant_modify_moisture_goal": "Moisture goal",
   "plant_modify_exposure_duration": "Light exposure duration",
   "plant_modify_type": "Type",
-  "plant_modify_type_title": "Change plant type"
+  "plant_modify_type_title": "Change plant type",
+  "greenhouse_modify_title": "Update greenhouse",
+  "greenhouse_modify_name": "Greenhouse's name"
 }
