@@ -5,6 +5,7 @@ import 'package:herbarium_mobile/src/core/models/plant_type.dart';
 import 'package:herbarium_mobile/src/core/utils/custom_icons.dart';
 import 'package:herbarium_mobile/src/ui/base/base_scaffold.dart';
 import 'package:herbarium_mobile/src/ui/base/plant_pot_button.dart';
+import 'package:herbarium_mobile/src/ui/plant_details/widgets/modify_plant_bottom_sheet.dart';
 import 'package:herbarium_mobile/src/ui/plant_details/widgets/plant_lifecycle_indicator.dart';
 
 class PlantDetailsView extends StatelessWidget {
@@ -18,6 +19,15 @@ class PlantDetailsView extends StatelessWidget {
       appBar: AppBar(
         title: Text(plant.type.toLocalized(AppLocalizations.of(context)!)),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit_outlined),
+            onPressed: () => showModalBottomSheet(
+                enableDrag: true,
+                context: context,
+                builder: (context) => ModifyPlantBottomSheet(plant: plant)),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -89,53 +99,53 @@ class PlantDetailsView extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.badge_outlined, size: 32),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: Text(AppLocalizations.of(context)!.plant_info,
-                              style: Theme.of(context).textTheme.headline5),
-                        )
-                      ]),
-                ),
-                const Spacer(flex: 2),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      AppLocalizations.of(context)!
-                          .plant_details_moisture_goal(plant.type.moistureGoal),
-                      style: Theme.of(context).textTheme.subtitle1),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      AppLocalizations.of(context)!
-                          .plant_details_exposure_duration(
-                              plant.type.lightExposureMinDuration),
-                      style: Theme.of(context).textTheme.subtitle1),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      AppLocalizations.of(context)!.planted_on(plant.plantedAt),
-                      style: Theme.of(context).textTheme.subtitle1),
-                ),
-                const Spacer(flex: 2),
-              ],
-            ),
-          ))
+          _buildPlantInfoSection(context)
         ],
+      ));
+
+  Widget _buildPlantInfoSection(BuildContext context) => Expanded(
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                const Icon(Icons.badge_outlined, size: 32),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text(AppLocalizations.of(context)!.plant_info,
+                      style: Theme.of(context).textTheme.headline5),
+                )
+              ]),
+            ),
+            const Spacer(flex: 2),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  AppLocalizations.of(context)!
+                      .plant_details_moisture_goal(plant.moistureGoal),
+                  style: Theme.of(context).textTheme.subtitle1),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  AppLocalizations.of(context)!.plant_details_exposure_duration(
+                      plant.lightExposureMinDuration),
+                  style: Theme.of(context).textTheme.subtitle1),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  AppLocalizations.of(context)!.planted_on(plant.plantedOn),
+                  style: Theme.of(context).textTheme.subtitle1),
+            ),
+            const Spacer(flex: 2),
+          ],
+        ),
       ));
 }

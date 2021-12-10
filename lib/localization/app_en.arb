@@ -14,6 +14,14 @@
       "percentage": {}
     }
   },
+  "hour": "{hour}h",
+  "@hour": {
+    "placeholders": {
+      "hour": {
+        "type": "int"
+      }
+    }
+  },
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -77,5 +85,9 @@
         "format": "yMMMd"
       }
     }
-  }
+  },
+  "plant_modify_title": "Update plant",
+  "plant_modify_moisture_goal": "Moisture goal",
+  "plant_modify_exposure_duration": "Light exposure duration",
+  "plant_modify_type": "Type"
 }
