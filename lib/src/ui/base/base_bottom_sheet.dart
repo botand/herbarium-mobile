@@ -61,8 +61,7 @@ class BaseBottomSheet extends StatelessWidget {
             ),
           ],
         ),
-        if (isLoading)
-          _buildLoading()
+        if (isLoading) _buildLoading()
       ]);
 
   Widget _buildLoading() => Stack(

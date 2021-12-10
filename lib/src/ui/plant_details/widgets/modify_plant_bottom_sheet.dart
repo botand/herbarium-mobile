@@ -62,7 +62,8 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
                 setState(() {
                   _isLoading = true;
                 });
-                await widget.onSave(_moistureValue, _exposureDuration, _plantType);
+                await widget.onSave(
+                    _moistureValue, _exposureDuration, _plantType);
                 setState(() {
                   _isLoading = false;
                 });

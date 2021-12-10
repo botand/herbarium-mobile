@@ -120,8 +120,7 @@ class HomeViewModel extends FutureViewModel {
   /// Delete the current greenhouse then reload the page.
   Future<void> deleteCurrentGreenhouse() async {
     setBusy(true);
-    if (!(await _greenhousesRepository
-        .deleteGreenhouse(currentGreenhouse!))) {
+    if (!(await _greenhousesRepository.deleteGreenhouse(currentGreenhouse!))) {
       Fluttertoast.showToast(msg: intl.basic_error);
       _currentGreenhouseIndex = 1;
       _tabController.index = 1;
