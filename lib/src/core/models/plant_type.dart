@@ -1,4 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:herbarium_mobile/src/core/utils/utils.dart';
 
 class PlantType {
   /// Unique identifier of the plant type
@@ -44,36 +45,38 @@ class PlantType {
         'germinationTime: $germinationTime, '
         'growingTime: $growingTime}';
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'moisture_goal': moistureGoal,
+        'light_exposure_min_duration': lightExposureMinDuration,
+        'germination_time': germinationTime,
+        'growing_time': growingTime
+      };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PlantType &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          moistureGoal == other.moistureGoal &&
+          lightExposureMinDuration == other.lightExposureMinDuration &&
+          germinationTime == other.germinationTime &&
+          growingTime == other.growingTime;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      moistureGoal.hashCode ^
+      lightExposureMinDuration.hashCode ^
+      germinationTime.hashCode ^
+      growingTime.hashCode;
 }
 
 extension PlantTypeNameToLocalized on PlantType {
-  String toLocalized(AppLocalizations intl) {
-    String localizedString;
-
-    switch (name) {
-      case "chive":
-        localizedString = intl.plant_type_chive;
-        break;
-      case "coriander":
-        localizedString = intl.plant_type_coriander;
-        break;
-      case "parsley":
-        localizedString = intl.plant_type_parsley;
-        break;
-      case "thyme":
-        localizedString = intl.plant_type_thyme;
-        break;
-      case "lettuce":
-        localizedString = intl.plant_type_lettuce;
-        break;
-      case "cherry_tomatoes":
-        localizedString = intl.plant_type_cherry_tomatoes;
-        break;
-      default:
-        localizedString = intl.plant_type_default;
-        break;
-    }
-
-    return localizedString;
-  }
+  String toLocalized(AppLocalizations intl) => plantTypeToLocalized(intl, name);
 }

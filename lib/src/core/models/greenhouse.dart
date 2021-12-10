@@ -12,7 +12,7 @@ class Greenhouse {
 
   final DateTime lastTimestamp;
 
-  final DateTime createdAt;
+  final DateTime createdOn;
 
   Greenhouse(
       {required this.uuid,
@@ -20,7 +20,7 @@ class Greenhouse {
       this.plants = const [],
       this.tankLevel,
       required this.lastTimestamp,
-      required this.createdAt});
+      required this.createdOn});
 
   /// Get a plant based on its position in the greenhouse
   Plant? getPlant(int position) {
@@ -57,7 +57,26 @@ class Greenhouse {
           ? SensorData.fromJson(map["tank_level"] as Map<String, dynamic>)
           : null,
       lastTimestamp: DateTime.parse(map['last_timestamp'] as String),
-      createdAt: DateTime.parse(map['created_at'] as String));
+      createdOn: DateTime.parse(map['created_at'] as String));
+
+  @override
+  String toString() {
+    return 'Greenhouse{uuid: $uuid, '
+        'name: $name, '
+        'plants: $plants, '
+        'tankLevel: $tankLevel, '
+        'lastTimestamp: $lastTimestamp, '
+        'createdAt: $createdOn}';
+  }
+
+  Map<String, dynamic> toJson() => {
+        'uuid': uuid,
+        'name': name,
+        'plants': plants,
+        'tank_level': tankLevel,
+        'last_timestamp': lastTimestamp.toIso8601String(),
+        'created_at': createdOn.toIso8601String()
+      };
 }
 
 enum TankStatus { unknown, normal, nearlyEmpty, empty }

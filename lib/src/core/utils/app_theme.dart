@@ -22,6 +22,27 @@ class AppTheme {
             elevation: 10,
             selectedIconTheme: const IconThemeData(color: leafGreen)),
         progressIndicatorTheme:
-            theme.progressIndicatorTheme.copyWith(color: Colors.white));
+            theme.progressIndicatorTheme.copyWith(color: Colors.white),
+        bottomSheetTheme: theme.bottomSheetTheme.copyWith(
+            modalBackgroundColor: purple,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)))),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+                primary: Colors.white,
+                side: const BorderSide(color: leafGreen))),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                primary: leafGreen, onPrimary: Colors.black)),
+        sliderTheme: theme.sliderTheme.copyWith(
+            valueIndicatorColor: Colors.blueGrey,
+            activeTrackColor: leafGreen,
+            inactiveTrackColor: Colors.grey,
+            thumbColor: leafGreen,
+            overlayColor: leafGreen.withAlpha(128),
+            valueIndicatorShape: theme.sliderTheme.valueIndicatorShape),
+        dialogTheme: theme.dialogTheme.copyWith(backgroundColor: purple));
   }
 }

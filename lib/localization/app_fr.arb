@@ -7,11 +7,21 @@
   "next": "Suivant",
   "yes": "Oui",
   "no": "Non",
+  "save": "Sauvegarder",
+  "cancel": "Annuler",
   "na": "N/D",
   "percentage": "{percentage} %",
   "@percentage": {
     "placeholders": {
       "percentage": {}
+    }
+  },
+  "hour": "{hour}h",
+  "@hour": {
+    "placeholders": {
+      "hour": {
+        "type": "int"
+      }
     }
   },
   "title_home": "Accueil",
@@ -77,5 +87,10 @@
         "format": "yMMMd"
       }
     }
-  }
+  },
+  "plant_modify_title": "Modifier la plante",
+  "plant_modify_moisture_goal": "Objectif d'humidité",
+  "plant_modify_exposure_duration": "Exposition lumineuse minimum",
+  "plant_modify_type": "Type",
+  "plant_modify_type_title": "Changer le type de plante"
 }

@@ -5,7 +5,7 @@ description: Companion application for the Herbarium garden
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.3.0+1
+version: 0.4.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -30,6 +30,9 @@ dependencies:
   firebase_crashlytics: ^2.2.2
   rive: ^0.7.28
   fluttertoast: ^8.0.8
+  flutter_cache_manager: ^3.3.0
+  http: ^0.13.4
+  auto_size_text: ^3.0.0
   # Feature: User settings
   shared_preferences: ^2.0.9
   # Feature: Setup greenhouse

@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
-import 'package:herbarium_mobile/src/core/repositories/greenhouse_repository.dart';
+import 'package:herbarium_mobile/src/core/repositories/greenhouses_repository.dart';
 import 'package:herbarium_mobile/src/core/utils/http_exception.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
