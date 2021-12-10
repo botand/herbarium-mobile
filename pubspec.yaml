@@ -32,6 +32,7 @@ dependencies:
   fluttertoast: ^8.0.8
   flutter_cache_manager: ^3.3.0
   http: ^0.13.4
+  auto_size_text: ^3.0.0
   # Feature: User settings
   shared_preferences: ^2.0.9
   # Feature: Setup greenhouse

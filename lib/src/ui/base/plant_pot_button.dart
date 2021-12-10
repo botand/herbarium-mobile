@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
@@ -47,11 +48,12 @@ class PlantPotButton extends StatelessWidget {
         ),
       ),
       if (showLabel)
-        Padding(
-          padding: const EdgeInsets.only(top: 2.0),
-          child: Center(
-              child:
-                  Text(plant!.type.toLocalized(AppLocalizations.of(context)!))),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 2.0),
+            child:
+                  AutoSizeText(plant!.type.toLocalized(AppLocalizations.of(context)!)),
+          ),
         )
     ];
   }
