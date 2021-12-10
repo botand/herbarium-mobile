@@ -56,8 +56,10 @@ class GreenhousesRepository {
   /// Update the [greenhouse] in the database.
   Future<bool> updateGreenhouse(Greenhouse greenhouse) async {
     try {
-      _logger.d("$runtimeType - updateGreenhouse: start update plant ${greenhouse.uuid}");
-      await _apiService.updateGreenhouseDetails(greenhouse.uuid, greenhouse.name);
+      _logger.d(
+          "$runtimeType - updateGreenhouse: start update greenhouse ${greenhouse.uuid}");
+      await _apiService.updateGreenhouseDetails(
+          greenhouse.uuid, greenhouse.name);
     } on HttpException catch (_) {
       _logger.e("$runtimeType - updateGreenhouse: failed");
       return false;
@@ -67,7 +69,29 @@ class GreenhousesRepository {
       _logger.d("$runtimeType - updateGreenhouse: update greenhouses list");
       await getGreenhouses();
     } on HttpException catch (_) {
-      _logger.e("$runtimeType - updateGreenhouse: update greenhouses list failed");
+      _logger
+          .e("$runtimeType - updateGreenhouse: update greenhouses list failed");
+    }
+    return true;
+  }
+
+  /// Delete the [greenhouse] from the database.
+  Future<bool> deleteGreenhouse(Greenhouse greenhouse) async {
+    try {
+      _logger.d(
+          "$runtimeType - deleteGreenhouse: start deletion of greenhouse ${greenhouse.uuid}");
+      await _apiService.deleteGreenhouse(greenhouse.uuid);
+    } on HttpException catch (_) {
+      _logger.e("$runtimeType - deleteGreenhouse: failed");
+      return false;
+    }
+
+    try {
+      _logger.d("$runtimeType - deleteGreenhouse: update greenhouses list");
+      await getGreenhouses();
+    } on HttpException catch (_) {
+      _logger
+          .e("$runtimeType - deleteGreenhouse: update greenhouses list failed");
     }
     return true;
   }

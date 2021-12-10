@@ -25,6 +25,8 @@
     }
   },
   "required": "Requis",
+  "delete": "Supprimer",
+  "irreversible": "Cette action est irréversible.",
   "title_home": "Accueil",
   "title_more": "Plus",
   "setup_device_searching": "Recherche d'un nouvel appareil",
@@ -95,5 +97,6 @@
   "plant_modify_type": "Type",
   "plant_modify_type_title": "Changer le type de plante",
   "greenhouse_modify_title": "Modifier la serre",
-  "greenhouse_modify_name": "Nom de la serre"
+  "greenhouse_modify_name": "Nom de la serre",
+  "greenhouse_delete_confirm": "Êtes-vous sûr de vouloir supprimer la serre?"
 }

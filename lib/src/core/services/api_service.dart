@@ -112,4 +112,19 @@ class ApiService {
           url: Urls.postUpdatePlantDetails(plantUuid));
     }
   }
+
+  /// Delete the greenhouse [uuid] linked to the signed user.
+  /// Will throw an [HttpException] if the results of the request isn't successful.
+  Future deleteGreenhouse(String uuid) async {
+    final result = await _client.delete(Uri.parse(Urls.deleteGreenhouse(uuid)),
+        headers: await _headers);
+
+    if (result.statusCode >= 400) {
+      _logger.e("$runtimeType - deleteGreenhouse - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.getGreenhousesByUser);
+    }
+  }
 }

@@ -7,10 +7,15 @@ import 'package:herbarium_mobile/src/ui/base/base_bottom_sheet.dart';
 class ModifyGreenhouseInfoBottomSheet extends StatefulWidget {
   final Function(String) onSave;
 
+  final Future Function() onDelete;
+
   final Greenhouse greenhouse;
 
   const ModifyGreenhouseInfoBottomSheet(
-      {Key? key, required this.onSave, required this.greenhouse})
+      {Key? key,
+      required this.onSave,
+      required this.greenhouse,
+      required this.onDelete})
       : super(key: key);
 
   @override
@@ -67,6 +72,7 @@ class _ModifyGreenhouseInfoBottomSheetState
     final List<Widget> list = [];
 
     list.addAll(_buildNameForm(context));
+    list.addAll(_buildDeleteOption(context));
 
     return list;
   }
@@ -119,4 +125,48 @@ class _ModifyGreenhouseInfoBottomSheetState
           ),
         )
       ];
+
+  List<Widget> _buildDeleteOption(BuildContext context) => [
+    const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Divider(thickness: 1.5),
+    ),
+    ListTile(
+        title: Text(AppLocalizations.of(context)!.delete,
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1!
+                .copyWith(color: Colors.red)),
+        trailing: IconButton(
+            icon: const Icon(Icons.delete_outlined),
+            onPressed: () => showDialog(
+                barrierDismissible: true,
+                useSafeArea: true,
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text(AppLocalizations.of(context)!.greenhouse_delete_confirm),
+                  content: Text(AppLocalizations.of(context)!.irreversible),
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                            AppLocalizations.of(context)!.cancel)),
+                    OutlinedButton(
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          await widget.onDelete();
+                          setState(() {
+                            _isLoading = false;
+                          });
+                        },
+                        child: Text(
+                            AppLocalizations.of(context)!.delete))
+                  ],
+                ))),
+      )];
 }

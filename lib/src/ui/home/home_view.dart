@@ -46,8 +46,10 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                           isScrollControlled: true,
                           context: context,
                           builder: (context) => ModifyGreenhouseInfoBottomSheet(
-                              greenhouse: viewModel.currentGreenhouse!,
-                              onSave: viewModel.updateCurrentGreenhouse)),
+                                greenhouse: viewModel.currentGreenhouse!,
+                                onSave: viewModel.updateCurrentGreenhouse,
+                                onDelete: viewModel.deleteCurrentGreenhouse,
+                              )),
                     ),
                   )
                 ],

@@ -25,6 +25,8 @@
     }
   },
   "required": "Required",
+  "delete": "Delete",
+  "irreversible": "This action is irreversible.",
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -95,5 +97,6 @@
   "plant_modify_type": "Type",
   "plant_modify_type_title": "Change plant type",
   "greenhouse_modify_title": "Update greenhouse",
-  "greenhouse_modify_name": "Greenhouse's name"
+  "greenhouse_modify_name": "Greenhouse's name",
+  "greenhouse_delete_confirm": "Are you sure you wish to delete the greenhouse?"
 }
