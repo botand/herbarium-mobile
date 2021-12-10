@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:herbarium_mobile/src/core/constants/urls.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
+import 'package:herbarium_mobile/src/core/models/plant_type.dart';
 import 'package:herbarium_mobile/src/core/services/authentication_service.dart';
 import 'package:herbarium_mobile/src/core/utils/http_exception.dart';
 import 'package:http/http.dart';
@@ -46,5 +47,46 @@ class ApiService {
     return json
         .map((e) => Greenhouse.fromJson(e as Map<String, dynamic>))
         .toList();
+  }
+
+  /// Retrieve all the [PlantType] available.
+  /// Will throw an [HttpException] if the results of the request isn't successful.
+  Future<List<PlantType>> getPlantTypes() async {
+    final result = await _client.get(Uri.parse(Urls.getPlantTypes),
+        headers: await _headers);
+
+    if (result.statusCode >= 400) {
+      _logger.e("$runtimeType - getPlantTypes - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.getPlantTypes);
+    }
+
+    final json = jsonDecode(result.body) as List<dynamic>;
+    _logger.d("$runtimeType - getPlantTypes - ${result.statusCode}");
+
+    return json
+        .map((e) => PlantType.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Update a specified plant details.
+  Future updatePlantDetails(String plantUuid, int? typeId,
+      double? overrideMoistureGoal, double? overrideLightExposure) async {
+    final result = await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
+        headers: await _headers, body: jsonEncode({
+          'type': typeId,
+          'override_moisture_goal': overrideMoistureGoal,
+          'override_light_exposure_min_duration': overrideLightExposure
+        }));
+
+    if (result.statusCode >= 400) {
+      _logger.e("$runtimeType - updatePlantDetails - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.postUpdatePlantDetails(plantUuid));
+    }
   }
 }
