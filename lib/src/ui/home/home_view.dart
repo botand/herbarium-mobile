@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         onDispose: (HomeViewModel viewModel) => viewModel.onDispose,
         fireOnModelReadyOnce: true,
         builder: (context, viewModel, child) => BaseScaffold(
-          isLoading: viewModel.isBusy,
+            isLoading: viewModel.isBusy,
             appBar: AppBar(
               title: Row(
                 mainAxisSize: MainAxisSize.min,

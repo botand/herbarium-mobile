@@ -24,6 +24,8 @@ class _ModifyGreenhouseInfoBottomSheetState
 
   bool _isValid = true;
 
+  bool _isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -31,26 +33,30 @@ class _ModifyGreenhouseInfoBottomSheetState
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BaseBottomSheet(
+  Widget build(BuildContext context) => BaseBottomSheet(
+        isLoading: _isLoading,
         title: Text(AppLocalizations.of(context)!.greenhouse_modify_title,
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline5),
+            style: Theme.of(context).textTheme.headline5),
         actions: [
           TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(AppLocalizations.of(context)!.cancel.toUpperCase(),
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .bodyText1!
                       .copyWith(color: AppTheme.gray))),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: OutlinedButton(
-                onPressed: () => widget.onSave(_controller.text),
+                onPressed: () async {
+                  setState(() {
+                    _isLoading = true;
+                  });
+                  await widget.onSave(_controller.text);
+                  setState(() {
+                    _isLoading = false;
+                  });
+                },
                 child: Text(AppLocalizations.of(context)!.save.toUpperCase())),
           )
         ],
@@ -66,46 +72,51 @@ class _ModifyGreenhouseInfoBottomSheetState
   }
 
   List<Widget> _buildNameForm(BuildContext context) => [
-    ListTile(
-      title: Text(
-        AppLocalizations.of(context)!.greenhouse_modify_name,
-        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-          fontWeight: FontWeight.bold,
+        ListTile(
+          title: Text(
+            AppLocalizations.of(context)!.greenhouse_modify_name,
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          dense: true,
+          trailing: IconButton(
+            icon: const Icon(Icons.restore_outlined),
+            onPressed: () {
+              setState(() {
+                _controller.text = widget.greenhouse.name;
+              });
+            },
+          ),
         ),
-      ),
-      dense: true,
-      trailing: IconButton(
-        icon: const Icon(Icons.restore_outlined),
-        onPressed: () {
-          setState(() {
-            _controller.text = widget.greenhouse.name;
-          });
-        },
-      ),
-    ),
-    Padding(
-      padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, MediaQuery.of(context).viewInsets.bottom),
-      child: TextField(
-        decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: AppTheme.gray)),
-          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: AppTheme.leafGreen)),
-          errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-          focusedErrorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-          errorText: !_isValid ? AppLocalizations.of(context)!.required : null
-        ),
-        controller: _controller,
-        onChanged: (value) {
-          if(value.isEmpty) {
-            setState(() {
-              _isValid = false;
-            });
-          } else {
-            setState(() {
-              _isValid = true;
-            });
-          }
-        },
-      ),
-    )
-  ];
+        Padding(
+          padding: EdgeInsets.fromLTRB(
+              16.0, 8.0, 16.0, MediaQuery.of(context).viewInsets.bottom),
+          child: TextField(
+            decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppTheme.gray)),
+                focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppTheme.leafGreen)),
+                errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red)),
+                focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red)),
+                errorText:
+                    !_isValid ? AppLocalizations.of(context)!.required : null),
+            controller: _controller,
+            onChanged: (value) {
+              if (value.isEmpty) {
+                setState(() {
+                  _isValid = false;
+                });
+              } else {
+                setState(() {
+                  _isValid = true;
+                });
+              }
+            },
+          ),
+        )
+      ];
 }
