@@ -4,6 +4,7 @@ import 'package:herbarium_mobile/src/core/utils/app_theme.dart';
 import 'package:herbarium_mobile/src/ui/base/base_scaffold.dart';
 import 'package:herbarium_mobile/src/ui/home/home_viewmodel.dart';
 import 'package:herbarium_mobile/src/ui/home/widgets/greenhouse_details.dart';
+import 'package:herbarium_mobile/src/ui/home/widgets/modify_greenhouse_info_bottom_sheet.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatefulWidget {
@@ -30,8 +31,29 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         onDispose: (HomeViewModel viewModel) => viewModel.onDispose,
         fireOnModelReadyOnce: true,
         builder: (context, viewModel, child) => BaseScaffold(
+            isLoading: viewModel.isBusy,
             appBar: AppBar(
-              title: Text(viewModel.currentGreenhouse?.name ?? ""),
+              title: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(viewModel.currentGreenhouse?.name ?? ""),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: IconButton(
+                      icon: const Icon(Icons.edit_outlined),
+                      onPressed: () => showModalBottomSheet(
+                          enableDrag: true,
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (context) => ModifyGreenhouseInfoBottomSheet(
+                                greenhouse: viewModel.currentGreenhouse!,
+                                onSave: viewModel.updateCurrentGreenhouse,
+                                onDelete: viewModel.deleteCurrentGreenhouse,
+                              )),
+                    ),
+                  )
+                ],
+              ),
               centerTitle: true,
               automaticallyImplyLeading: false,
               actions: [

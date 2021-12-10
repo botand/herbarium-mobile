@@ -79,4 +79,12 @@ class Greenhouse {
       };
 }
 
+extension CopyGreenhouse on Greenhouse {
+  Greenhouse copyWith({String? name}) => Greenhouse(
+      uuid: uuid,
+      name: name ?? this.name,
+      lastTimestamp: lastTimestamp,
+      createdOn: createdOn);
+}
+
 enum TankStatus { unknown, normal, nearlyEmpty, empty }

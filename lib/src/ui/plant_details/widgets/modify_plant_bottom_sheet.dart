@@ -32,6 +32,8 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
 
   late PlantType _plantType;
 
+  bool _isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +44,7 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
 
   @override
   Widget build(BuildContext context) => BaseBottomSheet(
+      isLoading: _isLoading,
       title: Text(AppLocalizations.of(context)!.plant_modify_title,
           style: Theme.of(context).textTheme.headline5),
       actions: [
@@ -55,8 +58,16 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: OutlinedButton(
-              onPressed: () =>
-                  widget.onSave(_moistureValue, _exposureDuration, _plantType),
+              onPressed: () async {
+                setState(() {
+                  _isLoading = true;
+                });
+                await widget.onSave(
+                    _moistureValue, _exposureDuration, _plantType);
+                setState(() {
+                  _isLoading = false;
+                });
+              },
               child: Text(AppLocalizations.of(context)!.save.toUpperCase())),
         )
       ],
