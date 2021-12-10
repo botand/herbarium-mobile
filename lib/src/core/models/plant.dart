@@ -6,7 +6,7 @@ class Plant {
 
   final int position;
 
-  final DateTime plantedAt;
+  final DateTime plantedOn;
 
   final PlantType type;
 
@@ -27,7 +27,7 @@ class Plant {
   Plant(
       {required this.uuid,
       required this.position,
-      required this.plantedAt,
+      required this.plantedOn,
       required this.type,
       this.overrideMoistureGoal,
       this.overrideLightExposureMinDuration,
@@ -39,7 +39,7 @@ class Plant {
 
   /// Determine the plant current stage.
   PlantStage get plantStage {
-    final days = (DateTime.now()).difference(plantedAt).inDays;
+    final days = (DateTime.now()).difference(plantedOn).inDays;
 
     if (days < type.germinationTime) {
       return PlantStage.germination;
@@ -50,10 +50,15 @@ class Plant {
     return PlantStage.harvestable;
   }
 
+  double get moistureGoal => overrideMoistureGoal ?? type.moistureGoal;
+
+  double get lightExposureMinDuration =>
+      overrideLightExposureMinDuration ?? type.lightExposureMinDuration;
+
   factory Plant.fromJson(Map<String, dynamic> map) => Plant(
       uuid: map["uuid"] as String,
       position: map["position"] as int,
-      plantedAt: DateTime.parse(map['planted_at'] as String),
+      plantedOn: DateTime.parse(map['planted_at'] as String),
       type: PlantType.fromJson(map["type"] as Map<String, dynamic>),
       overrideMoistureGoal: map["override_moisture_goal"] as double?,
       overrideLightExposureMinDuration:
@@ -79,7 +84,7 @@ class Plant {
   String toString() {
     return 'Plant{uuid: $uuid, '
         'position: $position, '
-        'plantedAt: $plantedAt, '
+        'plantedAt: $plantedOn, '
         'type: $type, '
         'overrideMoistureGoal: $overrideMoistureGoal, '
         'overrideLightExposureMinDuration: $overrideLightExposureMinDuration, '

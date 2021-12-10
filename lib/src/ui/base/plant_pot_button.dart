@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
 import 'package:herbarium_mobile/src/core/models/plant_type.dart';
+import 'package:herbarium_mobile/src/core/utils/utils.dart';
 
 class PlantPotButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -9,9 +10,6 @@ class PlantPotButton extends StatelessWidget {
   final Plant? plant;
 
   final bool showLabel;
-
-  String get _plantTagAsset =>
-      "assets/images/plant_${plant!.type.name}_tag.png";
 
   const PlantPotButton(
       {Key? key, this.onTap, this.plant, this.showLabel = true})
@@ -43,7 +41,8 @@ class PlantPotButton extends StatelessWidget {
                 child: Image.asset(plantPotImageAsset, fit: BoxFit.fitHeight)),
             if (plant!.type.id > 1)
               AspectRatio(
-                  aspectRatio: 6 / 2, child: Image.asset(_plantTagAsset)),
+                  aspectRatio: 6 / 2,
+                  child: Image.asset(plantTagAsset(plant!.type.name))),
           ],
         ),
       ),
