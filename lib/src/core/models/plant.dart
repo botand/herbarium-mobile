@@ -108,6 +108,61 @@ class Plant {
         'light_strip_status': lightStripStatus,
         'removed': removed
       };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Plant &&
+          runtimeType == other.runtimeType &&
+          uuid == other.uuid &&
+          position == other.position &&
+          plantedOn == other.plantedOn &&
+          type == other.type &&
+          overrideMoistureGoal == other.overrideMoistureGoal &&
+          overrideLightExposureMinDuration ==
+              other.overrideLightExposureMinDuration &&
+          moistureLastReading == other.moistureLastReading &&
+          lightLastReading == other.lightLastReading &&
+          valveStatus == other.valveStatus &&
+          lightStripStatus == other.lightStripStatus &&
+          removed == other.removed;
+
+  @override
+  int get hashCode =>
+      uuid.hashCode ^
+      position.hashCode ^
+      plantedOn.hashCode ^
+      type.hashCode ^
+      overrideMoistureGoal.hashCode ^
+      overrideLightExposureMinDuration.hashCode ^
+      moistureLastReading.hashCode ^
+      lightLastReading.hashCode ^
+      valveStatus.hashCode ^
+      lightStripStatus.hashCode ^
+      removed.hashCode;
+}
+
+extension CopyPlant on Plant {
+  Plant copyWith(
+          {int? position,
+          DateTime? plantedOn,
+          PlantType? type,
+          double? overrideMoistureGoal,
+          double? overrideLightExposureMinDuration}) =>
+      Plant(
+          uuid: uuid,
+          position: position ?? this.position,
+          type: type ?? this.type,
+          plantedOn: plantedOn ?? this.plantedOn,
+          overrideMoistureGoal:
+              overrideMoistureGoal ?? this.overrideMoistureGoal,
+          overrideLightExposureMinDuration: overrideLightExposureMinDuration ??
+              this.overrideLightExposureMinDuration,
+          moistureLastReading: moistureLastReading,
+          lightLastReading: lightLastReading,
+          valveStatus: valveStatus,
+          lightStripStatus: lightStripStatus,
+          removed: removed);
 }
 
 enum PlantStage { germination, growing, harvestable }

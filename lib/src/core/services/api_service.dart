@@ -24,7 +24,8 @@ class ApiService {
 
   Future<Map<String, String>> get _headers async => {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ${await _authenticationService.userToken}'
+        'Authorization': 'Bearer ${await _authenticationService.userToken}',
+        'Content-Type': 'application/json'
       };
 
   /// Retrieve every greenhouses linked to the signed user.
@@ -76,7 +77,7 @@ class ApiService {
       double? overrideMoistureGoal, double? overrideLightExposure) async {
     final result = await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
         headers: await _headers, body: jsonEncode({
-          'type': typeId,
+          'type_id': typeId,
           'override_moisture_goal': overrideMoistureGoal,
           'override_light_exposure_min_duration': overrideLightExposure
         }));

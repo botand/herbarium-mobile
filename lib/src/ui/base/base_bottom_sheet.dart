@@ -7,13 +7,18 @@ class BaseBottomSheet extends StatelessWidget {
 
   final bool showHandle;
 
+  final List<Widget> actions;
+
   const BaseBottomSheet(
-      {Key? key, this.title, required this.child, this.showHandle = true})
+      {Key? key,
+      this.title,
+      required this.child,
+      this.showHandle = true,
+      this.actions = const []})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      Column(
+  Widget build(BuildContext context) => Column(
         children: [
           if (showHandle)
             Center(
@@ -28,12 +33,29 @@ class BaseBottomSheet extends StatelessWidget {
                 ),
               ),
             ),
-          if(title != null)
-            Padding(padding: const EdgeInsets.all(8.0), child: title),
+          if (title != null)
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: actions.isEmpty
+                      ? MainAxisAlignment.center
+                      : MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: title!,
+                    ),
+                    if (actions.isNotEmpty)
+                      Row(
+                        children: actions,
+                      )
+                  ],
+                )),
           const Divider(thickness: 1.5),
           Expanded(
             child: child,
-          )
+          ),
+          // const Divider(thickness: 1.5),
         ],
       );
 }

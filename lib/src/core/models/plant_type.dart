@@ -54,6 +54,27 @@ class PlantType {
         'germination_time': germinationTime,
         'growing_time': growingTime
       };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PlantType &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          moistureGoal == other.moistureGoal &&
+          lightExposureMinDuration == other.lightExposureMinDuration &&
+          germinationTime == other.germinationTime &&
+          growingTime == other.growingTime;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      moistureGoal.hashCode ^
+      lightExposureMinDuration.hashCode ^
+      germinationTime.hashCode ^
+      growingTime.hashCode;
 }
 
 extension PlantTypeNameToLocalized on PlantType {
