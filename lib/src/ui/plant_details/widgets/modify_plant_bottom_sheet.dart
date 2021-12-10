@@ -55,7 +55,8 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: OutlinedButton(
-              onPressed: () => widget.onSave(_moistureValue, _exposureDuration, _plantType),
+              onPressed: () =>
+                  widget.onSave(_moistureValue, _exposureDuration, _plantType),
               child: Text(AppLocalizations.of(context)!.save.toUpperCase())),
         )
       ],

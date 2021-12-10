@@ -13,7 +13,7 @@ class PlantDetailsViewModel extends BaseViewModel {
       locator<PlantTypesRepository>();
 
   final GreenhousesRepository _greenhousesRepository =
-  locator<GreenhousesRepository>();
+      locator<GreenhousesRepository>();
 
   final NavigationService _navigationService = locator<NavigationService>();
 
@@ -50,9 +50,9 @@ class PlantDetailsViewModel extends BaseViewModel {
           newPlant.copyWith(overrideLightExposureMinDuration: exposureDuration);
     }
 
-    if(newPlant != plant) {
+    if (newPlant != plant) {
       setBusy(true);
-      if(!(await _greenhousesRepository.updatePlant(newPlant))) {
+      if (!(await _greenhousesRepository.updatePlant(newPlant))) {
         Fluttertoast.showToast(msg: intl.basic_error);
       } else {
         _plant = newPlant;

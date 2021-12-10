@@ -67,7 +67,7 @@ class GreenhousesRepository {
     try {
       _logger.d("$runtimeType - updatePlant: update greenhouses list");
       getGreenhouses();
-    } on HttpException catch(_) {
+    } on HttpException catch (_) {
       _logger.e("$runtimeType - updatePlant: update greenhouses list failed");
     }
     return true;

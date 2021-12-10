@@ -51,8 +51,8 @@ class PlantPotButton extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(top: 2.0),
-            child:
-                  AutoSizeText(plant!.type.toLocalized(AppLocalizations.of(context)!)),
+            child: AutoSizeText(
+                plant!.type.toLocalized(AppLocalizations.of(context)!)),
           ),
         )
     ];

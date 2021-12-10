@@ -50,7 +50,8 @@ class _PlantTypesCarouselState extends State<PlantTypesCarousel> {
               physics: const FixedExtentScrollPhysics(),
               onSelectedItemChanged: widget.onSelectedItemChanged == null
                   ? null
-                  : (index) => widget.onSelectedItemChanged!(widget.elements[index]),
+                  : (index) =>
+                      widget.onSelectedItemChanged!(widget.elements[index]),
               itemExtent: widget.height,
               children: _buildCards(context)),
         ),

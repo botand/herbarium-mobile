@@ -26,8 +26,8 @@ class PlantDetailsView extends StatelessWidget {
               isLoading: viewModel.isBusy,
               showBottomBar: false,
               appBar: AppBar(
-                title:
-                    Text(viewModel.plant.type.toLocalized(AppLocalizations.of(context)!)),
+                title: Text(viewModel.plant.type
+                    .toLocalized(AppLocalizations.of(context)!)),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -79,8 +79,8 @@ class PlantDetailsView extends StatelessWidget {
                                     Text(
                                         plant.moistureLastReading != null
                                             ? AppLocalizations.of(context)!
-                                                .percentage(viewModel.plant
-                                                    .moistureLastReading!
+                                                .percentage(viewModel
+                                                    .plant.moistureLastReading!
                                                     .round())
                                             : AppLocalizations.of(context)!.na,
                                         style: Theme.of(context)
@@ -103,8 +103,8 @@ class PlantDetailsView extends StatelessWidget {
                                   Text(
                                       plant.lightLastReading != null
                                           ? AppLocalizations.of(context)!
-                                              .percentage(viewModel.plant
-                                                  .lightLastReading!
+                                              .percentage(viewModel
+                                                  .plant.lightLastReading!
                                                   .round())
                                           : AppLocalizations.of(context)!.na,
                                       style: Theme.of(context)
@@ -127,7 +127,9 @@ class PlantDetailsView extends StatelessWidget {
                 ],
               )));
 
-  Widget _buildPlantInfoSection(BuildContext context, PlantDetailsViewModel viewModel) => Expanded(
+  Widget _buildPlantInfoSection(
+          BuildContext context, PlantDetailsViewModel viewModel) =>
+      Expanded(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -149,8 +151,8 @@ class PlantDetailsView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  AppLocalizations.of(context)!
-                      .plant_details_moisture_goal(viewModel.plant.moistureGoal),
+                  AppLocalizations.of(context)!.plant_details_moisture_goal(
+                      viewModel.plant.moistureGoal),
                   style: Theme.of(context).textTheme.subtitle1),
             ),
             const Spacer(),
@@ -165,7 +167,8 @@ class PlantDetailsView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  AppLocalizations.of(context)!.planted_on(viewModel.plant.plantedOn),
+                  AppLocalizations.of(context)!
+                      .planted_on(viewModel.plant.plantedOn),
                   style: Theme.of(context).textTheme.subtitle1),
             ),
             const Spacer(flex: 2),

@@ -22,8 +22,9 @@ class PlantTypesRepository {
     // Trying to retrieve from cache
     if (_plantTypes.isEmpty) {
       try {
-        final List responseCache = jsonDecode(
-            await _cacheService.get(_plantTypesCacheKey)) as List<dynamic>;
+        final List responseCache =
+            jsonDecode(await _cacheService.get(_plantTypesCacheKey))
+                as List<dynamic>;
         _plantTypes.addAll(responseCache.map((e) => PlantType.fromJson(e)));
         _logger.d(
             "$runtimeType - getPlantTypes: ${_plantTypes.length} plant types from cache.");
@@ -33,14 +34,13 @@ class PlantTypesRepository {
       }
     }
 
-    if(fromCacheOnly) {
+    if (fromCacheOnly) {
       return _plantTypes;
     }
 
     final fetchedPlantTypes = await _apiService.getPlantTypes();
     _logger.i(
-        "$runtimeType - getPlantTypes fetched ${fetchedPlantTypes
-            .length} plant types");
+        "$runtimeType - getPlantTypes fetched ${fetchedPlantTypes.length} plant types");
 
     _plantTypes.clear();
     _plantTypes.addAll(fetchedPlantTypes);

@@ -75,15 +75,18 @@ class ApiService {
   /// Update a specified plant details.
   Future updatePlantDetails(String plantUuid, int? typeId,
       double? overrideMoistureGoal, double? overrideLightExposure) async {
-    final result = await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
-        headers: await _headers, body: jsonEncode({
-          'type_id': typeId,
-          'override_moisture_goal': overrideMoistureGoal,
-          'override_light_exposure_min_duration': overrideLightExposure
-        }));
+    final result =
+        await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
+            headers: await _headers,
+            body: jsonEncode({
+              'type_id': typeId,
+              'override_moisture_goal': overrideMoistureGoal,
+              'override_light_exposure_min_duration': overrideLightExposure
+            }));
 
     if (result.statusCode >= 400) {
-      _logger.e("$runtimeType - updatePlantDetails - Failed ${result.statusCode}");
+      _logger
+          .e("$runtimeType - updatePlantDetails - Failed ${result.statusCode}");
       throw HttpException(
           httpCode: result.statusCode,
           message: result.body,

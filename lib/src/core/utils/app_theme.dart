@@ -33,10 +33,9 @@ class AppTheme {
             style: OutlinedButton.styleFrom(
                 primary: Colors.white,
                 side: const BorderSide(color: leafGreen))),
-        elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(
-          primary: leafGreen,
-          onPrimary: Colors.black
-        )),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                primary: leafGreen, onPrimary: Colors.black)),
         sliderTheme: theme.sliderTheme.copyWith(
             valueIndicatorColor: Colors.blueGrey,
             activeTrackColor: leafGreen,
@@ -44,9 +43,6 @@ class AppTheme {
             thumbColor: leafGreen,
             overlayColor: leafGreen.withAlpha(128),
             valueIndicatorShape: theme.sliderTheme.valueIndicatorShape),
-      dialogTheme: theme.dialogTheme.copyWith(
-        backgroundColor: purple
-      )
-    );
+        dialogTheme: theme.dialogTheme.copyWith(backgroundColor: purple));
   }
 }
