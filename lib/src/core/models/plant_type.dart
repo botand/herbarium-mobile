@@ -45,6 +45,15 @@ class PlantType {
         'germinationTime: $germinationTime, '
         'growingTime: $growingTime}';
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'moisture_goal': moistureGoal,
+        'light_exposure_min_duration': lightExposureMinDuration,
+        'germination_time': germinationTime,
+        'growing_time': growingTime
+      };
 }
 
 extension PlantTypeNameToLocalized on PlantType {

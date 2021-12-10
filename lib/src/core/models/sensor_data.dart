@@ -24,6 +24,18 @@ class SensorData {
       timestamp: DateTime.parse(map['timestamp'] as String),
       value: double.parse((map["value"] as double).toStringAsFixed(2)),
       plantUuid: map["plant_uuid"]);
+
+  @override
+  String toString() {
+    return 'SensorData{type: $type, timestamp: $timestamp, value: $value, plantUuid: $plantUuid}';
+  }
+
+  Map<String, dynamic> toJson() => {
+        'type': type,
+        'timestamp': timestamp,
+        'value': value,
+        'plant_uuid': plantUuid
+      };
 }
 
 enum SensorType {

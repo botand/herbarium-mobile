@@ -62,7 +62,7 @@ class Plant {
       type: PlantType.fromJson(map["type"] as Map<String, dynamic>),
       overrideMoistureGoal: map["override_moisture_goal"] as double?,
       overrideLightExposureMinDuration:
-          map["light_exposure_min_duration"] as double?,
+          map["override_light_exposure_min_duration"] as double?,
       moistureLastReading: map["moisture_last_reading"] != null
           ? double.parse(
               (map["moisture_last_reading"] as double).toStringAsFixed(2))
@@ -94,6 +94,20 @@ class Plant {
         'lightStripStatus: $lightStripStatus, '
         'removed: $removed}';
   }
+
+  Map<String, dynamic> toJson() => {
+        'uuid': uuid,
+        'position': position,
+        'planted_at': plantedOn,
+        'type': type,
+        'override_moisture_goal': overrideMoistureGoal,
+        'light_exposure_min_duration': overrideLightExposureMinDuration,
+        'moisture_last_reading': moistureLastReading,
+        'light_last_reading': lightLastReading,
+        'valve_status': valveStatus,
+        'light_strip_status': lightStripStatus,
+        'removed': removed
+      };
 }
 
 enum PlantStage { germination, growing, harvestable }

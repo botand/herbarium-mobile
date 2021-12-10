@@ -24,6 +24,18 @@ class ActuatorState {
       timestamp: DateTime.parse(map['timestamp'] as String),
       status: map["value"] as bool,
       plantUuid: map["plant_uuid"]);
+
+  @override
+  String toString() {
+    return 'ActuatorState{type: $type, timestamp: $timestamp, status: $status, plantUuid: $plantUuid}';
+  }
+
+  Map<String, dynamic> toJson() => {
+        'type': type,
+        'timestamp': timestamp,
+        'status': status,
+        'plant_uuid': plantUuid
+      };
 }
 
 enum ActuatorType {
