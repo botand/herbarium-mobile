@@ -22,17 +22,10 @@ class DoneStep extends StatelessWidget {
                 .headline4!
                 .copyWith(color: Colors.white)),
         SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-        Card(
-          margin: const EdgeInsets.all(8.0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: cardHeight,
-              child: Stack(alignment: Alignment.bottomRight, children: const []),
-            ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Image.asset("assets/images/added_plant.png", fit: BoxFit.fill),
           ),
-        ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
