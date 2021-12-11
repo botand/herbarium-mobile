@@ -27,6 +27,7 @@
   "required": "Requis",
   "delete": "Supprimer",
   "irreversible": "Cette action est irréversible.",
+  "all_done": "Tout est bon!",
   "title_home": "Accueil",
   "title_more": "Plus",
   "setup_device_searching": "Recherche d'un nouvel appareil",
@@ -99,5 +100,10 @@
   "greenhouse_modify_title": "Modifier la serre",
   "greenhouse_modify_name": "Nom de la serre",
   "greenhouse_delete_confirm": "Êtes-vous sûr de vouloir supprimer la serre?",
-  "greenhouse_new_plant": "Nouveau!"
+  "greenhouse_new_plant": "Nouveau!",
+  "plant_setup_new_plant_question": "Est-ce une nouvelle plante ?",
+  "plant_setup_question_new_plant": "Oui! C'est une nouvelle plante",
+  "plant_setup_question_moved_plant": "J'ai déplacé une plante",
+  "plant_setup_new_growing": "Qu'est-ce qu'on fait poussé?",
+  "plant_setup_which_moved": "Quelle plante avez-vous déplacé?"
 }
