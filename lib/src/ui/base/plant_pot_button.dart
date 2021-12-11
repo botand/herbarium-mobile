@@ -29,16 +29,17 @@ class _PlantPotButtonState extends State<PlantPotButton>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1))
-          ..addListener(() {
-            if (_controller.isCompleted) {
-              setState(() {
-                _isOn = !_isOn;
-              });
-              _controller.repeat();
-            }
-          })..forward();
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500))
+      ..addListener(() {
+        if (_controller.isCompleted) {
+          setState(() {
+            _isOn = !_isOn;
+          });
+          _controller.forward(from: 0.0);
+        }
+      })
+      ..forward();
   }
 
   @override
@@ -91,8 +92,8 @@ class _PlantPotButtonState extends State<PlantPotButton>
 
   List<Widget> _buildBlinkingPlant(BuildContext context) {
     String plantPotImageAsset = "assets/images/plant_pot_with_light_off.png";
-    String plantPotImageAssetRed =
-        "assets/images/plant_pot_with_light_red_on.png";
+    String plantPotImageAssetRed = "assets/images/plant_pot_with_light_on.png";
+    // "assets/images/plant_pot_with_light_red_on.png";
 
     return [
       Hero(
