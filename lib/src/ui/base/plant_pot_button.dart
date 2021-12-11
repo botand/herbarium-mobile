@@ -60,7 +60,7 @@ class _PlantPotButtonState extends State<PlantPotButton>
     }
 
     if (widget.plant!.lightStripStatus != null &&
-        widget.plant!.lightStripStatus!.status) {
+        widget.plant!.lightStripStatus!) {
       plantPotImageAsset = "assets/images/plant_pot_with_light_on.png";
     }
     return [

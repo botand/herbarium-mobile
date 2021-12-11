@@ -18,9 +18,9 @@ class Plant {
 
   final double? lightLastReading;
 
-  final ActuatorState? valveStatus;
+  final bool? valveStatus;
 
-  final ActuatorState? lightStripStatus;
+  final bool? lightStripStatus;
 
   final bool removed;
 
@@ -72,11 +72,10 @@ class Plant {
               (map["light_last_reading"] as double).toStringAsFixed(2))
           : null,
       valveStatus: map["valve_status"] != null
-          ? ActuatorState.fromJson(map["valve_status"] as Map<String, dynamic>)
+          ? map["valve_status"] as bool
           : null,
       lightStripStatus: map["light_strip_status"] != null
-          ? ActuatorState.fromJson(
-              map["light_strip_status"] as Map<String, dynamic>)
+          ? map["light_strip_status"] as bool
           : null,
       removed: map["removed"] ?? false);
 
