@@ -30,12 +30,12 @@ class NavigationService {
   /// Replace the current route of the navigator by pushing the route named
   /// [routeName] and then delete the stack of previous routes
   Future<void> pushNamedAndRemoveUntil(
-      {String? path, Object? data, String? removeUntilRouteNamed}) async {
+      {String? path, Object? arguments, String? removeUntilRouteNamed}) async {
     await navigatorKey.currentState!.pushNamedAndRemoveUntil(
         path!,
         (Route<dynamic> route) => removeUntilRouteNamed != null
             ? route.settings.name == removeUntilRouteNamed
             : false,
-        arguments: data);
+        arguments: arguments);
   }
 }
