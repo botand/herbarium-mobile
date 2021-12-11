@@ -17,6 +17,8 @@ class PlantTypesRepository {
 
   final List<PlantType> _plantTypes = [];
 
+  bool _cacheUpdated = false;
+
   /// Retrieve every [PlantType] available.
   Future<List<PlantType>> getPlantTypes({bool fromCacheOnly = false}) async {
     // Trying to retrieve from cache
@@ -34,7 +36,7 @@ class PlantTypesRepository {
       }
     }
 
-    if (fromCacheOnly) {
+    if (fromCacheOnly || _cacheUpdated) {
       return _plantTypes;
     }
 
@@ -46,7 +48,7 @@ class PlantTypesRepository {
     _plantTypes.addAll(fetchedPlantTypes);
     // Update the cache
     _cacheService.update(_plantTypesCacheKey, jsonEncode(_plantTypes));
-
+    _cacheUpdated = true;
     return _plantTypes;
   }
 }
