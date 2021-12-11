@@ -28,6 +28,7 @@
   "delete": "Delete",
   "irreversible": "This action is irreversible.",
   "all_done": "All done!",
+  "done": "Finish",
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
