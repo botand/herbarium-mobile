@@ -18,7 +18,7 @@ class GreenhouseDetails extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Flexible(
+          Expanded(
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
@@ -29,7 +29,7 @@ class GreenhouseDetails extends StatelessWidget {
                 shrinkWrap: true,
                 // reverse: true,
                 itemBuilder: (BuildContext context, int index) {
-                  Plant? plant = greenhouse.getPlant(index);
+                  Plant? plant = greenhouse.getPlant(15 - index);
                   return PlantPotButton(
                       plant: plant,
                       onTap: plant != null
@@ -66,7 +66,7 @@ class GreenhouseDetails extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
