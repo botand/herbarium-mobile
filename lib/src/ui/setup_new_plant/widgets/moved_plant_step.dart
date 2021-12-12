@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
-import 'package:herbarium_mobile/src/core/models/plant_type.dart';
-import 'package:herbarium_mobile/src/ui/base/plant_type_carousel.dart';
 import 'package:herbarium_mobile/src/ui/home/widgets/greenhouse_details.dart';
 
 class MovedPlantStep extends StatelessWidget {

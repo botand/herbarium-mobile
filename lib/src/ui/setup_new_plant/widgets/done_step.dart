@@ -11,8 +11,6 @@ class DoneStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardHeight = MediaQuery.of(context).size.height / 6;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

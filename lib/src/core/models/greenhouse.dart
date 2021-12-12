@@ -37,7 +37,6 @@ class Greenhouse {
   bool get hasRemoved {
     for (Plant plant in plants) {
       if (plant.removed && plant.type.id != 1) {
-        print(plant.position);
         return true;
       }
     }
