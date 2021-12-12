@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:herbarium_mobile/src/ui/base/base_scaffold.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:herbarium_mobile/src/ui/base/ring_led_animated.dart';
 import 'package:herbarium_mobile/src/ui/setup_greenhouse/setup_greenhouse_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,7 +15,13 @@ class SetupGreenHouseView extends StatelessWidget {
           onDispose: (viewModel) => viewModel.stopScan(),
           onModelReady: (viewModel) => viewModel.startScan(),
           builder: (context, viewModel, child) => BaseScaffold(
-                  body: Center(
+              showBottomBar: false,
+              appBar: AppBar(
+                leading: IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.of(context).pop()),
+              ),
+              body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,8 +57,13 @@ class SetupGreenHouseView extends StatelessWidget {
                                       .setup_device_searching_tip,
                                   textAlign: TextAlign.center),
                               const SizedBox(height: 20),
-                              Container(
-                                  width: 50, height: 50, color: Colors.orange)
+                              const SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: RingLedAnimated(
+                                  pattern: RingPattern.blinkingOrange,
+                                ),
+                              )
                             ],
                           ),
                         ),

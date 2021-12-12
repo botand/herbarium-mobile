@@ -1,4 +1,5 @@
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import 'package:herbarium_mobile/src/core/repositories/greenhouses_repository.dart';
 import 'package:herbarium_mobile/src/ui/setup_greenhouse/ble_uuids.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/ui/setup_greenhouse/service/bluetooth_service.dart';
@@ -8,7 +9,10 @@ import 'package:stacked/stacked.dart';
 class SetupGreenHouseViewModel extends ReactiveViewModel {
   final _devicesName = 'Herbarium-greenhouse';
 
-  final _bluetoothService = locator<BluetoothService>();
+  final BluetoothService _bluetoothService = locator<BluetoothService>();
+
+  final GreenhousesRepository _greenhousesRepository =
+      locator<GreenhousesRepository>();
 
   final Logger _logger = locator<Logger>();
 
@@ -18,6 +22,11 @@ class SetupGreenHouseViewModel extends ReactiveViewModel {
 
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_bluetoothService];
+
+
+  SetupGreenHouseViewModel() {
+    _greenhousesRepository.getGreenhouses();
+  }
 
   /// Start scanning for BLE devices
   void startScan() {
