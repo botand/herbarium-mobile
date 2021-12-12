@@ -4,7 +4,7 @@ import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
 import 'package:herbarium_mobile/src/ui/base/base_scaffold.dart';
 import 'package:herbarium_mobile/src/ui/setup_new_plant/setup_plant_viewmodel.dart';
-import 'package:herbarium_mobile/src/ui/setup_new_plant/widgets/done_step.dart';
+import 'package:herbarium_mobile/src/ui/base/done_step.dart';
 import 'package:herbarium_mobile/src/ui/setup_new_plant/widgets/moved_plant_step.dart';
 import 'package:herbarium_mobile/src/ui/setup_new_plant/widgets/new_plant_step.dart';
 import 'package:herbarium_mobile/src/ui/setup_new_plant/widgets/setup_plant_first_step.dart';

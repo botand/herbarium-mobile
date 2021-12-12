@@ -133,4 +133,28 @@ class ApiService {
           url: Urls.getGreenhousesByUser);
     }
   }
+
+  /// Link a new greenhouse to the API.
+  Future<String> registerGreenhouse(String uuid, String name) async {
+    final result = await _client.put(Uri.parse(Urls.putRegisterGreenhouse),
+        headers: await _headers,
+        body: jsonEncode({
+          'uuid': uuid,
+          'name': name,
+        }));
+
+    if (result.statusCode >= 400) {
+      _logger
+          .e("$runtimeType - registerGreenhouse - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.putRegisterGreenhouse);
+    }
+
+    final json = jsonDecode(result.body) as Map<String, dynamic>;
+    _logger.d("$runtimeType - registerGreenhouse - ${result.statusCode}");
+
+    return json["uuid"] as String;
+  }
 }

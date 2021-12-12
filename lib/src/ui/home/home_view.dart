@@ -123,7 +123,12 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
           ElevatedButton(
               onPressed: () => viewModel.refresh(),
               style: ElevatedButton.styleFrom(primary: AppTheme.leafGreen),
-              child: Text(AppLocalizations.of(context)!.retry))
+              child: Text(AppLocalizations.of(context)!.retry)),
+          const SizedBox(height: 10),
+          OutlinedButton(
+              onPressed: () => viewModel.startSetupWorkflow(),
+              style: OutlinedButton.styleFrom(primary: AppTheme.leafGreen),
+              child: Text(AppLocalizations.of(context)!.setup_device_search))
         ],
       ));
 

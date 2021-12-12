@@ -5,7 +5,7 @@ description: Companion application for the Herbarium garden
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.6.0+1
+version: 0.7.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -39,6 +39,7 @@ dependencies:
   flutter_reactive_ble: ^5.0.0
   permission_handler: ^8.2.2
   device_info_plus: ^3.0.1
+  network_info_plus: ^2.1.1
   # Feature: Sign in
   firebase_auth: ^3.2.0
   google_sign_in: ^5.2.1

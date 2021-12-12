@@ -14,4 +14,8 @@ class MoreViewModel extends BaseViewModel {
     await _authenticationService.signOut();
     _navigationService.pushNamedAndRemoveUntil(path: NavigationRoute.login);
   }
+
+  void searchNewDevice() async {
+    _navigationService.pushNamed(NavigationRoute.setup);
+  }
 }

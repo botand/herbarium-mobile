@@ -62,6 +62,10 @@ class HomeViewModel extends FutureViewModel {
     Fluttertoast.showToast(msg: intl.basic_error);
   }
 
+  void startSetupWorkflow() {
+    _navigationService.pushNamed(NavigationRoute.setup);
+  }
+
   Future refresh() async {
     _logger.d("$runtimeType - Start refresh");
     setBusy(true);

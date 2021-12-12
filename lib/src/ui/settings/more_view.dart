@@ -11,18 +11,27 @@ class MoreView extends StatelessWidget {
   Widget build(BuildContext context) => ViewModelBuilder.nonReactive(
         viewModelBuilder: () => MoreViewModel(),
         builder: (context, MoreViewModel viewModel, child) => BaseScaffold(
+            appBar: AppBar(
+                automaticallyImplyLeading: false,
+                title: Text(AppLocalizations.of(context)!.title_more)),
             body: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.logout_outlined),
-              title: Text(AppLocalizations.of(context)!.more_sign_out),
-              onTap: () => showDialog(
-                  context: context,
-                  builder: (context) =>
-                      _buildSignOutDialog(context, viewModel)),
-            )
-          ],
-        )),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.logout_outlined),
+                  title: Text(AppLocalizations.of(context)!.more_sign_out),
+                  onTap: () => showDialog(
+                      context: context,
+                      builder: (context) =>
+                          _buildSignOutDialog(context, viewModel)),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.search_outlined),
+                  title:
+                      Text(AppLocalizations.of(context)!.setup_device_search),
+                  onTap: viewModel.searchNewDevice,
+                )
+              ],
+            )),
       );
 
   Widget _buildSignOutDialog(BuildContext context, MoreViewModel viewModel) =>
