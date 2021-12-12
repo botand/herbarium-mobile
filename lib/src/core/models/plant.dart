@@ -70,9 +70,8 @@ class Plant {
           ? double.parse(
               (map["light_last_reading"] as double).toStringAsFixed(2))
           : null,
-      valveStatus: map["valve_status"] != null
-          ? map["valve_status"] as bool
-          : null,
+      valveStatus:
+          map["valve_status"] != null ? map["valve_status"] as bool : null,
       lightStripStatus: map["light_strip_status"] != null
           ? map["light_strip_status"] as bool
           : null,
