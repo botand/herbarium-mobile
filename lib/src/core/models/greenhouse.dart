@@ -26,10 +26,22 @@ class Greenhouse {
   Plant? getPlant(int position, {bool isRemoved = false}) {
     for (Plant plant in plants) {
       if (plant.position == position && plant.removed == isRemoved) {
+        if(isRemoved == true && plant.type.id == 1) break;
         return plant;
       }
     }
     return null;
+  }
+
+  /// Check if there is
+  bool get hasRemoved {
+    for (Plant plant in plants) {
+      if (plant.removed && plant.type.id != 1) {
+        print(plant.position);
+        return true;
+      }
+    }
+    return false;
   }
 
   TankStatus get tankStatus {

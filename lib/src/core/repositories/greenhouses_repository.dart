@@ -97,11 +97,15 @@ class GreenhousesRepository {
   }
 
   /// Update the [plant] in the database.
-  Future<bool> updatePlant(Plant plant) async {
+  Future<bool> updatePlant(Plant plant, {bool moved = false}) async {
     try {
       _logger.d("$runtimeType - updatePlant: start update plant ${plant.uuid}");
-      await _apiService.updatePlantDetails(plant.uuid, plant.type.id,
-          plant.overrideMoistureGoal, plant.overrideLightExposureMinDuration);
+      await _apiService.updatePlantDetails(
+          plant.uuid,
+          plant.type.id,
+          plant.overrideMoistureGoal,
+          plant.overrideLightExposureMinDuration,
+          moved ? plant.position : null);
     } on HttpException catch (_) {
       _logger.e("$runtimeType - updatePlant: failed");
       return false;

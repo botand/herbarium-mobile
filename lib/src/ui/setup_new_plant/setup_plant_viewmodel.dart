@@ -54,7 +54,11 @@ class SetupPlantViewModel extends BaseViewModel {
 
   SetupPlantViewModel(
       {required Plant plant, required this.greenhouse, required this.intl})
-      : _plant = plant;
+      : _plant = plant {
+    if (!greenhouse.hasRemoved) {
+      _toStep(SetupPlantStep.newPlant);
+    }
+  }
 
   void isNewPlant() => _toStep(SetupPlantStep.newPlant);
 
@@ -68,7 +72,7 @@ class SetupPlantViewModel extends BaseViewModel {
   }
 
   Future next() async {
-    bool isSuccessful = true;
+    bool isSuccessful = false;
     if (_currentStep == SetupPlantStep.done) {
       _navigationService.pushNamedAndRemoveUntil(
           path: NavigationRoute.plantDetails,
@@ -80,6 +84,10 @@ class SetupPlantViewModel extends BaseViewModel {
     if (_currentStep == SetupPlantStep.newPlant) {
       _plant = plant.copyWith(type: _selectedPlantType!);
       isSuccessful = await _greenhousesRepository.updatePlant(_plant);
+    } else if (_currentStep == SetupPlantStep.movedPlant) {
+      _plant = _selectedPlant!.copyWith(position: plant.position);
+      isSuccessful =
+          await _greenhousesRepository.updatePlant(_plant, moved: true);
     }
 
     if (isSuccessful) {
@@ -98,6 +106,7 @@ class SetupPlantViewModel extends BaseViewModel {
   Future loadPlantTypes() async {
     _plantTypes = await _plantTypesRepository.getPlantTypes();
     _selectedPlantType = _plantTypes[0];
+    notifyListeners();
   }
 }
 
