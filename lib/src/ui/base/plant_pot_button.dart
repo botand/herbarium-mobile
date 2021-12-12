@@ -92,8 +92,8 @@ class _PlantPotButtonState extends State<PlantPotButton>
 
   List<Widget> _buildBlinkingPlant(BuildContext context) {
     String plantPotImageAsset = "assets/images/plant_pot_with_light_off.png";
-    String plantPotImageAssetRed = "assets/images/plant_pot_with_light_on.png";
-    // "assets/images/plant_pot_with_light_red_on.png";
+    String plantPotImageAssetRed =
+        "assets/images/plant_pot_with_light_red_on.png";
 
     return [
       Hero(
