@@ -192,6 +192,12 @@ class _ModifyPlantBottomSheetState extends State<ModifyPlantBottomSheet> {
                                         AppLocalizations.of(context)!.cancel)),
                                 ElevatedButton(
                                     onPressed: () {
+                                      if (_plantType != widget.plant.type) {
+                                        _exposureDuration =
+                                            _plantType.lightExposureMinDuration;
+                                        _moistureValue =
+                                            _plantType.moistureGoal;
+                                      }
                                       Navigator.of(context).pop();
                                       setState(() {});
                                     },
