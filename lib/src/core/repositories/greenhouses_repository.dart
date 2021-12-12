@@ -119,4 +119,23 @@ class GreenhousesRepository {
     }
     return true;
   }
+
+  /// Link the current user with the [uuid] greenhouse and name it.
+  Future<bool> registerGreenhouse(String uuid, String name) async {
+    try {
+      await _apiService.registerGreenhouse(uuid, name);
+    } on HttpException catch (_) {
+      _logger.e("$runtimeType - registerGreenhouse: failed");
+      return false;
+    }
+
+    try {
+      _logger.d("$runtimeType - registerGreenhouse: update greenhouses list");
+      getGreenhouses();
+    } on HttpException catch (_) {
+      _logger.e(
+          "$runtimeType - registerGreenhouse: update greenhouses list failed");
+    }
+    return true;
+  }
 }

@@ -14,7 +14,7 @@ class ApiService {
   final Logger _logger = locator<Logger>();
 
   final AuthenticationService _authenticationService =
-      locator<AuthenticationService>();
+  locator<AuthenticationService>();
 
   late final Client _client;
 
@@ -22,7 +22,8 @@ class ApiService {
     _client = client ?? Client();
   }
 
-  Future<Map<String, String>> get _headers async => {
+  Future<Map<String, String>> get _headers async =>
+      {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${await _authenticationService.userToken}',
         'Content-Type': 'application/json'
@@ -75,15 +76,16 @@ class ApiService {
   /// Update a specified greenhouse details.
   Future updateGreenhouseDetails(String greenhouseUuid, String name) async {
     final result =
-        await _client.post(Uri.parse(Urls.postUpdateGreenhouse(greenhouseUuid)),
-            headers: await _headers,
-            body: jsonEncode({
-              'name': name,
-            }));
+    await _client.post(Uri.parse(Urls.postUpdateGreenhouse(greenhouseUuid)),
+        headers: await _headers,
+        body: jsonEncode({
+          'name': name,
+        }));
 
     if (result.statusCode >= 400) {
       _logger.e(
-          "$runtimeType - updateGreenhouseDetails - Failed ${result.statusCode}");
+          "$runtimeType - updateGreenhouseDetails - Failed ${result
+              .statusCode}");
       throw HttpException(
           httpCode: result.statusCode,
           message: result.body,
@@ -92,21 +94,20 @@ class ApiService {
   }
 
   /// Update a specified plant details.
-  Future updatePlantDetails(
-      String plantUuid,
+  Future updatePlantDetails(String plantUuid,
       int? typeId,
       double? overrideMoistureGoal,
       double? overrideLightExposure,
       int? newPosition) async {
     final result =
-        await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
-            headers: await _headers,
-            body: jsonEncode({
-              'type_id': typeId,
-              'override_moisture_goal': overrideMoistureGoal,
-              'override_light_exposure_min_duration': overrideLightExposure,
-              'moved_position': newPosition
-            }));
+    await _client.post(Uri.parse(Urls.postUpdatePlantDetails(plantUuid)),
+        headers: await _headers,
+        body: jsonEncode({
+          'type_id': typeId,
+          'override_moisture_goal': overrideMoistureGoal,
+          'override_light_exposure_min_duration': overrideLightExposure,
+          'moved_position': newPosition
+        }));
 
     if (result.statusCode >= 400) {
       _logger
@@ -132,5 +133,29 @@ class ApiService {
           message: result.body,
           url: Urls.getGreenhousesByUser);
     }
+  }
+
+  /// Link a new greenhouse to the API.
+  Future<String> registerGreenhouse(String uuid, String name) async {
+    final result = await _client.put(
+        Uri.parse(Urls.putRegisterGreenhouse),
+        headers: await _headers,
+        body: jsonEncode({
+          'uuid': uuid,
+          'name': name,
+        }));
+
+    if (result.statusCode >= 400) {
+      _logger.e("$runtimeType - registerGreenhouse - Failed ${result.statusCode}");
+      throw HttpException(
+          httpCode: result.statusCode,
+          message: result.body,
+          url: Urls.putRegisterGreenhouse);
+    }
+
+    final json = jsonDecode(result.body) as Map<String, dynamic>;
+    _logger.d("$runtimeType - registerGreenhouse - ${result.statusCode}");
+
+    return json["uuid"] as String;
   }
 }
