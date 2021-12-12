@@ -48,7 +48,8 @@ class _SetupWifiGreenhouseStepState extends State<SetupWifiGreenhouseStep> {
                     borderSide: BorderSide(color: Colors.red)),
                 focusedErrorBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
-                hintText: AppLocalizations.of(context)!.setup_device_set_wifi_ssid_placeholder),
+                hintText: AppLocalizations.of(context)!
+                    .setup_device_set_wifi_ssid_placeholder),
             controller: _controllerSsid,
             onChanged: (value) {
               if (value.isEmpty) {

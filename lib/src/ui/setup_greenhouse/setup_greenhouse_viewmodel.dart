@@ -16,7 +16,7 @@ class SetupGreenHouseViewModel extends ReactiveViewModel {
   final BluetoothService _bluetoothService = locator<BluetoothService>();
 
   final GreenhousesRepository _greenhousesRepository =
-  locator<GreenhousesRepository>();
+      locator<GreenhousesRepository>();
 
   final NavigationService _navigationService = locator<NavigationService>();
 
@@ -24,10 +24,9 @@ class SetupGreenHouseViewModel extends ReactiveViewModel {
 
   final Logger _logger = locator<Logger>();
 
-  List<DiscoveredDevice> get _devices =>
-      _bluetoothService.devices
-          .where((e) => e.name.startsWith(_devicesName))
-          .toList();
+  List<DiscoveredDevice> get _devices => _bluetoothService.devices
+      .where((e) => e.name.startsWith(_devicesName))
+      .toList();
 
   @override
   List<ReactiveServiceMixin> get reactiveServices => [_bluetoothService];
@@ -99,11 +98,13 @@ class SetupGreenHouseViewModel extends ReactiveViewModel {
   /// Handle the WIFI connection
   Future setupWifi(String ssid, String password) async {
     await _bluetoothService.sendData(
-        _deviceConnected!, BleServicesUuids.setupDevice,
+        _deviceConnected!,
+        BleServicesUuids.setupDevice,
         BleCharacteristicsUuids.setupWifi,
         ssid.codeUnits);
     await _bluetoothService.sendData(
-        _deviceConnected!, BleServicesUuids.setupDevice,
+        _deviceConnected!,
+        BleServicesUuids.setupDevice,
         BleCharacteristicsUuids.setupWifi,
         password.codeUnits);
     _toStep(SetupGreenhouseStep.done);
