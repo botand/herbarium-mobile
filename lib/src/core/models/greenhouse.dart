@@ -23,9 +23,9 @@ class Greenhouse {
       required this.createdOn});
 
   /// Get a plant based on its position in the greenhouse
-  Plant? getPlant(int position) {
+  Plant? getPlant(int position, {bool isRemoved = false}) {
     for (Plant plant in plants) {
-      if (plant.position == position) {
+      if (plant.position == position && plant.removed == isRemoved) {
         return plant;
       }
     }

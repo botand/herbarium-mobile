@@ -11,7 +11,16 @@ class GreenhouseDetails extends StatelessWidget {
 
   final Function(Plant) onTap;
 
-  const GreenhouseDetails({Key? key, required this.greenhouse, required this.onTap})
+  final bool showRemovedOnly;
+
+  final bool showDetails;
+
+  const GreenhouseDetails(
+      {Key? key,
+      required this.greenhouse,
+      required this.onTap,
+      this.showRemovedOnly = false,
+      this.showDetails = true})
       : super(key: key);
 
   @override
@@ -29,15 +38,14 @@ class GreenhouseDetails extends StatelessWidget {
                 shrinkWrap: true,
                 // reverse: true,
                 itemBuilder: (BuildContext context, int index) {
-                  Plant? plant = greenhouse.getPlant(15 - index);
+                  Plant? plant = greenhouse.getPlant(15 - index,
+                      isRemoved: showRemovedOnly);
                   return PlantPotButton(
                       plant: plant,
-                      onTap: plant != null
-                          ? () => onTap(plant)
-                          : null);
+                      onTap: plant != null ? () => onTap(plant) : null);
                 }),
           ),
-          _buildGreenhouseStatusBar(context),
+          if (showDetails) _buildGreenhouseStatusBar(context),
         ],
       );
 

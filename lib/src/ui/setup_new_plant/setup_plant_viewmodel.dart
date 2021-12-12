@@ -45,6 +45,13 @@ class SetupPlantViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  Plant? _selectedPlant;
+
+  set selectedPlant(Plant plant) {
+    _selectedPlant = plant;
+    next();
+  }
+
   SetupPlantViewModel(
       {required Plant plant, required this.greenhouse, required this.intl})
       : _plant = plant;
@@ -90,6 +97,7 @@ class SetupPlantViewModel extends BaseViewModel {
 
   Future loadPlantTypes() async {
     _plantTypes = await _plantTypesRepository.getPlantTypes();
+    _selectedPlantType = _plantTypes[0];
   }
 }
 
