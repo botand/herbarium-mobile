@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:herbarium_mobile/src/core/constants/navigation_route.dart';
 import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
+import 'package:herbarium_mobile/src/core/models/plant.dart';
 import 'package:herbarium_mobile/src/core/repositories/greenhouses_repository.dart';
 import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:herbarium_mobile/src/core/utils/http_exception.dart';
+import 'package:herbarium_mobile/src/ui/setup_new_plant/models/setup_plant_arguments.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 
@@ -129,6 +132,18 @@ class HomeViewModel extends FutureViewModel {
       _navigationService.pop();
     }
     setBusy(false);
+  }
+
+  /// Move to [plant] details
+  void onPlantTap(Plant plant) {
+    if (plant.type.id == 1) {
+      _navigationService.pushNamed(NavigationRoute.setupPlant,
+          arguments: SetupPlantArguments(
+              plant: plant, greenhouse: currentGreenhouse!));
+    } else {
+      _navigationService.pushNamed(NavigationRoute.plantDetails,
+          arguments: plant);
+    }
   }
 
   void onDispose() {

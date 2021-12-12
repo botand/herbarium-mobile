@@ -27,6 +27,8 @@
   "required": "Required",
   "delete": "Delete",
   "irreversible": "This action is irreversible.",
+  "all_done": "All done!",
+  "done": "Finish",
   "title_home": "Home",
   "title_more": "More",
   "setup_device_searching": "Searching a new device",
@@ -98,5 +100,11 @@
   "plant_modify_type_title": "Change plant type",
   "greenhouse_modify_title": "Update greenhouse",
   "greenhouse_modify_name": "Greenhouse's name",
-  "greenhouse_delete_confirm": "Are you sure you wish to delete the greenhouse?"
+  "greenhouse_delete_confirm": "Are you sure you wish to delete the greenhouse?",
+  "greenhouse_new_plant": "New!",
+  "plant_setup_new_plant_question": "Is it a new plant?",
+  "plant_setup_question_new_plant": "Yes! It is a new plant",
+  "plant_setup_question_moved_plant": "I moved a plant",
+  "plant_setup_new_growing": "What are we growing?",
+  "plant_setup_which_moved": "Which plant did you moved?"
 }

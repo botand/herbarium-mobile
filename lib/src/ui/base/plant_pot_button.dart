@@ -5,7 +5,7 @@ import 'package:herbarium_mobile/src/core/models/plant.dart';
 import 'package:herbarium_mobile/src/core/models/plant_type.dart';
 import 'package:herbarium_mobile/src/core/utils/utils.dart';
 
-class PlantPotButton extends StatelessWidget {
+class PlantPotButton extends StatefulWidget {
   final VoidCallback? onTap;
 
   final Plant? plant;
@@ -17,44 +17,113 @@ class PlantPotButton extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<PlantPotButton> createState() => _PlantPotButtonState();
+}
+
+class _PlantPotButtonState extends State<PlantPotButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  bool _isOn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500))
+      ..addListener(() {
+        if (_controller.isCompleted) {
+          setState(() {
+            _isOn = !_isOn;
+          });
+          _controller.forward(from: 0.0);
+        }
+      })
+      ..forward();
+  }
+
+  @override
   Widget build(BuildContext context) => InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Column(
             mainAxisSize: MainAxisSize.min,
-            children:
-                plant != null ? _buildPlant(context) : _buildFrenchClip()),
+            children: widget.plant != null
+                ? _buildPlant(context)
+                : _buildFrenchClip()),
       );
 
   List<Widget> _buildPlant(BuildContext context) {
     String plantPotImageAsset = "assets/images/plant_pot_with_light_off.png";
 
-    if (plant!.lightStripStatus != null && plant!.lightStripStatus!.status) {
+    if (widget.plant!.type.id == 1) {
+      return _buildBlinkingPlant(context);
+    }
+
+    if (widget.plant!.lightStripStatus != null &&
+        widget.plant!.lightStripStatus!) {
       plantPotImageAsset = "assets/images/plant_pot_with_light_on.png";
     }
     return [
       Hero(
-        tag: plant!.uuid,
+        tag: widget.plant!.uuid,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             AspectRatio(
                 aspectRatio: 1,
                 child: Image.asset(plantPotImageAsset, fit: BoxFit.fitHeight)),
-            if (plant!.type.id > 1)
+            if (widget.plant!.type.id > 1)
               AspectRatio(
                   aspectRatio: 6 / 2,
-                  child: Image.asset(plantTagAsset(plant!.type.name))),
+                  child: Image.asset(plantTagAsset(widget.plant!.type.name))),
           ],
         ),
       ),
-      if (showLabel)
+      if (widget.showLabel)
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(top: 2.0),
             child: AutoSizeText(
-                plant!.type.toLocalized(AppLocalizations.of(context)!)),
+                widget.plant!.type.toLocalized(AppLocalizations.of(context)!)),
           ),
         )
+    ];
+  }
+
+  List<Widget> _buildBlinkingPlant(BuildContext context) {
+    String plantPotImageAsset = "assets/images/plant_pot_with_light_off.png";
+    String plantPotImageAssetRed = "assets/images/plant_pot_with_light_on.png";
+    // "assets/images/plant_pot_with_light_red_on.png";
+
+    return [
+      Hero(
+        tag: widget.plant!.uuid,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(
+                    _isOn ? plantPotImageAsset : plantPotImageAssetRed,
+                    fit: BoxFit.fitHeight)),
+            if (widget.plant!.type.id > 1)
+              AspectRatio(
+                  aspectRatio: 6 / 2,
+                  child: Image.asset(plantTagAsset(widget.plant!.type.name))),
+          ],
+        ),
+      ),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 2.0),
+          child: AutoSizeText(
+              AppLocalizations.of(context)!.greenhouse_new_plant,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.red)),
+        ),
+      )
     ];
   }
 
@@ -64,4 +133,10 @@ class PlantPotButton extends StatelessWidget {
             child: Image.asset("assets/images/french_clip_light_off.png",
                 fit: BoxFit.fitHeight))
       ];
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }

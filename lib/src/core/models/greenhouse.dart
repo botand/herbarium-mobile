@@ -23,13 +23,24 @@ class Greenhouse {
       required this.createdOn});
 
   /// Get a plant based on its position in the greenhouse
-  Plant? getPlant(int position) {
+  Plant? getPlant(int position, {bool isRemoved = false}) {
     for (Plant plant in plants) {
-      if (plant.position == position) {
+      if (plant.position == position && plant.removed == isRemoved) {
+        if (isRemoved == true && plant.type.id == 1) break;
         return plant;
       }
     }
     return null;
+  }
+
+  /// Check if there is
+  bool get hasRemoved {
+    for (Plant plant in plants) {
+      if (plant.removed && plant.type.id != 1) {
+        return true;
+      }
+    }
+    return false;
   }
 
   TankStatus get tankStatus {

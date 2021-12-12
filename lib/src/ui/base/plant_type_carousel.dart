@@ -41,6 +41,14 @@ class _PlantTypesCarouselState extends State<PlantTypesCarousel> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    for (final PlantType type in widget.elements) {
+      precacheImage(AssetImage(plantTagAsset(type.name)), context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) => SizedBox(
         height: (widget.height + 50),
         child: RotatedBox(

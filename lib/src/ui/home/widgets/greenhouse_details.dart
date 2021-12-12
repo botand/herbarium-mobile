@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:herbarium_mobile/src/core/constants/navigation_route.dart';
-import 'package:herbarium_mobile/src/core/locator.dart';
 import 'package:herbarium_mobile/src/core/models/greenhouse.dart';
 import 'package:herbarium_mobile/src/core/models/plant.dart';
-import 'package:herbarium_mobile/src/core/services/navigation_service.dart';
 import 'package:herbarium_mobile/src/core/utils/custom_icons.dart';
 import 'package:herbarium_mobile/src/ui/base/plant_pot_button.dart';
 import 'package:herbarium_mobile/src/ui/base/ring_led_animated.dart';
 
 class GreenhouseDetails extends StatelessWidget {
-  final NavigationService _navigationService = locator<NavigationService>();
-
   final Greenhouse greenhouse;
 
-  GreenhouseDetails({Key? key, required this.greenhouse}) : super(key: key);
+  final Function(Plant) onTap;
+
+  final bool showRemovedOnly;
+
+  final bool showDetails;
+
+  const GreenhouseDetails(
+      {Key? key,
+      required this.greenhouse,
+      required this.onTap,
+      this.showRemovedOnly = false,
+      this.showDetails = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Flexible(
+          Expanded(
             child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
@@ -31,17 +38,14 @@ class GreenhouseDetails extends StatelessWidget {
                 shrinkWrap: true,
                 // reverse: true,
                 itemBuilder: (BuildContext context, int index) {
-                  Plant? plant = greenhouse.getPlant(index);
+                  Plant? plant = greenhouse.getPlant(15 - index,
+                      isRemoved: showRemovedOnly);
                   return PlantPotButton(
                       plant: plant,
-                      onTap: plant != null
-                          ? () => _navigationService.pushNamed(
-                              NavigationRoute.plantDetails,
-                              arguments: plant)
-                          : null);
+                      onTap: plant != null ? () => onTap(plant) : null);
                 }),
           ),
-          _buildGreenhouseStatusBar(context),
+          if (showDetails) _buildGreenhouseStatusBar(context),
         ],
       );
 
@@ -70,7 +74,7 @@ class GreenhouseDetails extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
