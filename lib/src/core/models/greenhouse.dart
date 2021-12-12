@@ -26,7 +26,7 @@ class Greenhouse {
   Plant? getPlant(int position, {bool isRemoved = false}) {
     for (Plant plant in plants) {
       if (plant.position == position && plant.removed == isRemoved) {
-        if(isRemoved == true && plant.type.id == 1) break;
+        if (isRemoved == true && plant.type.id == 1) break;
         return plant;
       }
     }

@@ -43,7 +43,8 @@ class SetupPlantFirstStep extends StatelessWidget {
                       child: Stack(alignment: Alignment.bottomRight, children: [
                         Align(
                           alignment: Alignment.bottomLeft,
-                          child: Image.asset("assets/images/new_plant.png", fit: BoxFit.fill),
+                          child: Image.asset("assets/images/new_plant.png",
+                              fit: BoxFit.fill),
                         ),
                         Text(
                             AppLocalizations.of(context)!
@@ -67,7 +68,8 @@ class SetupPlantFirstStep extends StatelessWidget {
                       child: Stack(alignment: Alignment.bottomRight, children: [
                         Align(
                           alignment: Alignment.bottomLeft,
-                          child: Image.asset("assets/images/moving_plant.png", fit: BoxFit.fill),
+                          child: Image.asset("assets/images/moving_plant.png",
+                              fit: BoxFit.fill),
                         ),
                         Text(
                             AppLocalizations.of(context)!
