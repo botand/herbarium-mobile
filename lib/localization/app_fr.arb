@@ -73,6 +73,7 @@
   "plant_type_thyme": "Thym",
   "plant_type_lettuce": "Laitue",
   "plant_type_cherry_tomatoes": "Tomates cerises",
+  "plant_type_basil": "Basilic",
   "plant_type_default": "Personnaliser",
   "plant_info": "Informations de la plante",
   "plant_details_moisture_goal": "Objectif d'humidité de la terre: {percentage}%",

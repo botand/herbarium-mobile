@@ -48,6 +48,12 @@ class _SetupWifiGreenhouseStepState extends State<SetupWifiGreenhouseStep> {
                     borderSide: BorderSide(color: Colors.red)),
                 focusedErrorBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
+                label: Text(
+                    AppLocalizations.of(context)!.setup_device_set_wifi_ssid),
+                floatingLabelStyle: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(color: AppTheme.leafGreen),
                 hintText: AppLocalizations.of(context)!
                     .setup_device_set_wifi_ssid_placeholder),
             controller: _controllerSsid,
@@ -76,6 +82,10 @@ class _SetupWifiGreenhouseStepState extends State<SetupWifiGreenhouseStep> {
                     borderSide: BorderSide(color: Colors.red)),
                 label: Text(AppLocalizations.of(context)!
                     .setup_device_set_wifi_password_placeholder),
+                floatingLabelStyle: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(color: AppTheme.leafGreen),
                 hintText: AppLocalizations.of(context)!
                     .setup_device_set_wifi_password_placeholder),
             controller: _controllerPassword,

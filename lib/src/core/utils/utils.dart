@@ -25,6 +25,9 @@ String plantTypeToLocalized(AppLocalizations intl, String name) {
     case "cherry_tomatoes":
       localizedString = intl.plant_type_cherry_tomatoes;
       break;
+    case "basil":
+      localizedString = intl.plant_type_basil;
+      break;
     default:
       localizedString = intl.plant_type_default;
       break;

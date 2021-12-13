@@ -50,7 +50,6 @@ class BluetoothService with ReactiveServiceMixin {
       if (knowDeviceIndex >= 0) {
         _devices[knowDeviceIndex] = device;
       } else {
-        _logger.d("BLE - New device detected: ${device.name}.");
         _devices.add(device);
       }
     }, onError: (Object e, StackTrace stack) {

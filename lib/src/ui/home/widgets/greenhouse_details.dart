@@ -69,8 +69,14 @@ class GreenhouseDetails extends StatelessWidget {
     }
 
     if (greenhouse.tankStatus != TankStatus.unknown) {
+      int level = greenhouse.tankLevel!.value.round();
+      if(level < 0) {
+        level = 0;
+      } else if(level > 100) {
+        level = 100;
+      }
       tankString = AppLocalizations.of(context)!
-          .percentage(greenhouse.tankLevel!.value.round());
+          .percentage(level);
     }
 
     return Padding(

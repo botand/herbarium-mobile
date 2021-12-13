@@ -73,6 +73,7 @@
   "plant_type_thyme": "Thyme",
   "plant_type_lettuce": "Lettuce",
   "plant_type_cherry_tomatoes": "Cherry tomatoes",
+  "plant_type_basil": "Basil",
   "plant_type_default": "Custom",
   "plant_info": "Plant informations",
   "plant_details_moisture_goal": "Dirt moisture goal: {percentage}%",

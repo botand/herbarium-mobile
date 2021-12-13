@@ -121,7 +121,7 @@ class _PlantPotButtonState extends State<PlantPotButton>
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!
-                  .copyWith(fontWeight: FontWeight.bold, color: Colors.red)),
+                  .copyWith(fontWeight: FontWeight.bold)),
         ),
       )
     ];
