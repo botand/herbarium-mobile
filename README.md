@@ -1,16 +1,21 @@
-# herbarium_mobile
+# Herbarium - Mobile application
 
-A new Flutter project.
+Herbarium is a semi-autonomous greenhouse that can help people growing plants in their house. 
 
-## Getting Started
+This is an end of study project realized by three student of the ÉTS:
 
-This project is a starting point for a Flutter application.
+- Charles Chaumienne (electrical engineering)
+- Youssef Hammami (software engineering)
+- [Xavier Chrétien (software engineering)](https://github.com/apomalyn).
 
-A few resources to get you started if this is your first Flutter project:
+This project is divided in three (3) parts:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- [embedded software](https://github.com/botand/Herbarium-embedded)
+- [API REST](https://github.com/botand/herbarium-api)
+- Mobile application (this repository) 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Getting started
+
+You will need a firebase project with Google Sign In authorized.
+
+Otherwise please deploy a version of the API or mock the data based on the [OpenAPI contract](https://botand.github.io/herbarium-api/#overview).
